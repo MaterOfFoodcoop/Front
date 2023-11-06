@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "eslint": "^8.48.0",
+    "next-fonts": "^1.5.1",
     "prettier": "^3.0.3",
     "tsconfig": "workspace:*",
     "turbo": "latest"

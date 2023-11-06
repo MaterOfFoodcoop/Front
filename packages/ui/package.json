@@ -2,10 +2,9 @@
   "name": "ui",
   "version": "0.0.0",
   "main": "./index.tsx",
-  "types": "./index.tsx",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint \"**/*.ts*\"",
     "generate:component": "turbo gen react-component"
   },
   "devDependencies": {
@@ -17,5 +16,10 @@
     "react": "^18.2.0",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "eslint": "^8.53.0",
+    "styled-components": "^6.1.0",
+    "ui": "^0.2.4"
   }
 }
