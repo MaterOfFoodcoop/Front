@@ -32,8 +32,10 @@ module.exports = {
     },
   },
   ignorePatterns: ["node_modules/", "dist/", ".eslintrc.js"],
-
   rules: {
-    // add specific rules configurations here
-  },
+    "import/no-named-as-default": "off",
+    "unicorn/filename-case": "off",
+    "import/prefer-default-export": "off",
+    "import/no-default-export" : "off"
+  }
 };

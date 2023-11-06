@@ -1,16 +1,4 @@
-import { createGlobalStyle } from "styled-components";
-
-export const GlobalStyle = createGlobalStyle`    
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: 'Pretendard';
-    }
-`
-
-export const color = {
+const color = {
     yellow: '#FFD600',
     gray50: '#F9F9F9',
     gray100: '#F2F2F2',
@@ -25,3 +13,4 @@ export const color = {
 };
 
 
+export default color;

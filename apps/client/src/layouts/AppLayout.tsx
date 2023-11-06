@@ -3,7 +3,6 @@
 import type { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
-
 interface Props {
   children: ReactNode;
 }
@@ -11,7 +10,6 @@ interface Props {
 const AppLayout = ({ children }: Props) => {
   return (
     <StyledAppLayout>
-
       <Section>{children}</Section>
     </StyledAppLayout>
   );
