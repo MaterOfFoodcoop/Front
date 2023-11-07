@@ -2,6 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { styled } from 'styled-components';
+import Header from "client/components/common/Header";
 
 interface Props {
   children: ReactNode;
@@ -10,6 +11,7 @@ interface Props {
 const AppLayout = ({ children }: Props) => {
   return (
     <StyledAppLayout>
+      <Header />
       <Section>{children}</Section>
     </StyledAppLayout>
   );
