@@ -1,4 +1,4 @@
-'use client'
+"use client" 
 
 import styled from 'styled-components';
 import type { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react';
@@ -9,18 +9,14 @@ interface ButtonProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-
   children?: ReactNode;
 }
 
-
 function Button ({
     children,
-
   }: ButtonProps): JSX.Element {
     return (
       <CustomButton
-
       >
         {children}
       </CustomButton>
