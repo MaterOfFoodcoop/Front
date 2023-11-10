@@ -35,7 +35,7 @@ function Products ({}: ContentProps): JSX.Element {
     <Container>
       <ProductContainer>
         {data.map( ({id, name, price, like, isInStock}) => (
-            <Product id={id} key={id} name={name} price={price} like={like} isInStock={isInStock}/>
+            <Product key={id} name={name} price={price} like={like} isInStock={isInStock}/>
           )
         )}
       </ProductContainer>
