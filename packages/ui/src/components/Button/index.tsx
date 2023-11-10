@@ -26,22 +26,12 @@ function Button ({
 export default Button;
 
 const CustomButton = styled.button<ButtonProps>`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: ${color.yellow};
-    border-radius: 1.25rem;
-    font-size: 0.938rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s ease-in-out;
-    :hover {
-        background: #a4a4a4;
-        transition: background 0.2s ease-in-out;
-    }
-    :disabled {
-        background: #dcdcdc;
-        pointer-events: none;
-    }
+  word-break: keep-all;
+  color: white;
+  background-color: ${color.yellow};
+  border-radius: 1.25rem;
+  height: 3.875rem;
+  padding: 0.3rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 300;
 `;
