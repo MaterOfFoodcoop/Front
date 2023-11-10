@@ -14,7 +14,7 @@ interface ContentProps {
 function Products ({}: ContentProps): JSX.Element {
   const dummydata = MAIN_PRODUCT_DATA;
   const ITEMS_PER_PAGE = 8;
-  const LAST_PAGE = Math.ceil(dummydata.length / ITEMS_PER_PAGE); // 마지막 페이지
+  const LAST_PAGE = Math.ceil(dummydata.length / ITEMS_PER_PAGE);
   
   const [page, setPage] = useState(1);
   const [data, setData] = useState(dummydata.slice(0, ITEMS_PER_PAGE));
