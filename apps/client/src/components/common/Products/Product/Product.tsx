@@ -18,7 +18,7 @@ function Product ({name, price, like, isInStock}: ProductProps): JSX.Element {
 
           </ImgBox>
           <TextContents>
-              <InnerRow><span style={{fontWeight: '800', fontSize:'18px'}}>{name}</span><Badge isInStock={isInStock} /></InnerRow>
+              <InnerRow><span style={{fontWeight: '800', fontSize:'18px'}}>{name}</span><Badge $isInStock={isInStock} /></InnerRow>
             <Row>
               <InnerRow style={{fontWeight: '700', fontSize:'16px'}}> <MoneyIcon>₩</MoneyIcon> {price}</InnerRow>
               <InnerRow><LikeIcon/><span style={{color: `${color.gray100}`}}>{like}</span></InnerRow>
@@ -60,14 +60,14 @@ const ImgBox = styled.div`
 `
 
 interface BadgeProps {
-  isInStock: boolean;
+  $isInStock: boolean;
 }
 
 
 const Badge = styled.span<BadgeProps>`
   height: 12px;
   width: 12px;
-  background-color: ${props => props.isInStock ? '#AFEB80' : '#eb8080'};
+  background-color: ${props => props.$isInStock ? '#AFEB80' : '#eb8080'};
   border-radius: 50%;
   display: inline-block;
 `;
