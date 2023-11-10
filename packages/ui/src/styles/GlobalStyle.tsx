@@ -19,13 +19,10 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         border: 0;
-        font-size: 10px;
         vertical-align: baseline;
     }
     body{
         line-height: 1;
-        background-color: #F6F9F0;
-        margin-bottom: 100px;
     }
     ol, ul{
         list-style: none;

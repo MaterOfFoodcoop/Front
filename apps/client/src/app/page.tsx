@@ -1,11 +1,25 @@
+'use client'
+
+import FilterTabs from "client/components/common/FilterTabs/FilterTabs";
+import Products from "client/components/common/Products/Products";
+import SummaryContent from "client/components/common/SummaryContent/SummaryContent";
+import SearchBox from "client/components/main/SearchBox/SearchBox";
 import AppLayout from "client/layouts/AppLayout";
-import Button from "ui/components/Button";
+import styled from "styled-components";
 
 export default function Home() {
   return (
     <AppLayout>
-      하하하 나는 홈이다
-      <Button>하하</Button>
+      <Container>
+        <SummaryContent subject="와라! 매점" description="와라! 매점을 통해 매점 이용을 편리하게!"/>
+        <SearchBox />
+        <FilterTabs items={"상품"} />
+        <Products/>
+      </Container>
     </AppLayout>
   )
 }
+
+const Container = styled.div`
+  padding: 6rem 11.25rem;
+`
