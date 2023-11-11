@@ -1,9 +1,10 @@
+import type { RuleSet} from 'styled-components';
 import { css } from 'styled-components';
 
 const fontGenerator = (
   weight: number,
   size: number,
-) => css`
+):RuleSet<object> => css`
     font-family: "nanumSquareNeo";
     font-weight: ${weight};
     font-size: ${size}rem;
