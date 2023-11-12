@@ -2,6 +2,7 @@
 
 import LikeIcon from 'client/assets/LikeIcon';
 import styled from 'styled-components';
+import Text from 'ui/components/Text';
 import { color } from 'ui/styles';
 
 interface ProductProps {
@@ -18,10 +19,10 @@ function Product ({name, price, like, isInStock}: ProductProps): JSX.Element {
 
           </ImgBox>
           <TextContents>
-              <InnerRow><span style={{fontWeight: '800', fontSize:'18px'}}>{name}</span><Badge $isInStock={isInStock} /></InnerRow>
+              <InnerRow><Text $fontType='SubTitle2'>{name}</Text><Badge $isInStock={isInStock} /></InnerRow>
             <Row>
-              <InnerRow style={{fontWeight: '700', fontSize:'16px'}}> <MoneyIcon>₩</MoneyIcon> {price}</InnerRow>
-              <InnerRow><LikeIcon/><span style={{color: `${color.gray100}`}}>{like}</span></InnerRow>
+              <InnerRow><Text $fontType='SubTitle3'><MoneyIcon>₩</MoneyIcon> {price}</Text></InnerRow>
+              <InnerRow><LikeIcon/><Text $fontType='SubTitle3' style={{color: `${color.gray100}`}}>{like}</Text></InnerRow>
             </Row>
           </TextContents>
       </Container>
@@ -51,6 +52,7 @@ const TextContents = styled.div`
   justify-content: center;
   gap: 20px;
   height: 30%;
+  padding-top: 30px;
 `
 
 const ImgBox = styled.div` 

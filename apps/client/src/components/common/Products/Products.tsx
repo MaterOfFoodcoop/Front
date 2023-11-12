@@ -52,7 +52,7 @@ export default Products;
 
 
 const Container = styled.div`
-  margin: 40px 0px;
+  margin: 5rem 0;
 `
 const ProductContainer = styled.div`
   display: flex;

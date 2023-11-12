@@ -1,6 +1,7 @@
 'use client'
 
 import styled from 'styled-components';
+import Text from 'ui/components/Text';
 
 interface ContentProps {
   subject: string;
@@ -10,8 +11,8 @@ interface ContentProps {
 function SummaryContent ({subject, description}: ContentProps): JSX.Element {
     return (
       <Content>
-        <Subject>{subject}</Subject>
-        <Description>{description}</Description>
+        <Subject><Text $fontType={'Header1'}>{subject}</Text></Subject>
+        <Description><Text $fontType={'Header2'}>{description}</Text></Description>
       </Content>
     );
   }

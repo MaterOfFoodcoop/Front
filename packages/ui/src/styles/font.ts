@@ -11,17 +11,17 @@ const fontGenerator = (
 `;
 
 const font = {
- Header1: fontGenerator(900, 3),
- Header2: fontGenerator(800, 1.875),
- Header3: fontGenerator(400, 1.5),
+ Header1: fontGenerator(800, 2.25),
+ Header2: fontGenerator(400, 1.875),
+ Header3: fontGenerator(800, 1.5),
 
  SubTitle1: fontGenerator(700, 1.5),
  SubTitle2: fontGenerator(800, 1.125),
  SubTitle3: fontGenerator(800, 1),
 
  Body: fontGenerator(400, 1.5),
- Button: fontGenerator(700, 1.125),
- Placeholder: fontGenerator(700, 1.125),
+ Button: fontGenerator(500, 1.125),
+ Placeholder: fontGenerator(500, 1.125),
 };
 
 export default font;
