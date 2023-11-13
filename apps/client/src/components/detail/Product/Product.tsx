@@ -59,7 +59,7 @@ const TopBox = styled.div`
   min-width: fit-content;   
   height: fit-content;
   display: flex;
-  gap: 4.375rem;
+  gap: 3rem;
 `
 
 const TextContents = styled.div` 
