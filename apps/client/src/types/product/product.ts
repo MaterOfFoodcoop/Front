@@ -4,4 +4,5 @@ export interface Product {
     price: number;
     like: number;
     isInStock: boolean;
+    imgSrc: string;
 }

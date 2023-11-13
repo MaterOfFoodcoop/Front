@@ -22,6 +22,7 @@ function Header ({}: HeaderProps): JSX.Element {
 export default Header;
 
 const StyledHeader = styled.header`
+  z-index: 1;
   position: sticky;
   top: 0;
   width: 100%;

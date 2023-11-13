@@ -24,6 +24,7 @@ const StyledTab = styled.div<{$active?:boolean}>`
     border: ${props => props.$active ? `2px solid ${color.yellow}` : `2px solid ${color.gray100}`};
     padding: 20px 30px;
     transition: 0.3s ease;
+    cursor: pointer;
 `
 
 const FilterText = styled.span<{$active?:boolean}>`

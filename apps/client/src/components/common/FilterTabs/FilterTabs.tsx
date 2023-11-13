@@ -22,14 +22,13 @@ function FilterTabs({ items }: ProductListProps): JSX.Element {
         <FilterTab key={index} name={item} 
           $active={item === activeTab}
           onClick={() => setActiveTab(item)}
-/>
+        />
       ))}
     </Container>
   );
 };
 
 export default FilterTabs;
-
 
 const Container = styled.div`
   display: flex;
