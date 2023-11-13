@@ -1,29 +1,31 @@
 "use client";
 
-import { font } from 'ui/styles';
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
+import { font } from 'ui/styles';
 
 type Font = keyof typeof font;
 
-interface Props extends HTMLAttributes<HTMLSpanElement> {
+interface TextProps extends HTMLAttributes<HTMLSpanElement> {
   children: ReactNode;
   color?: CSSProperties['color'];
   $fontType: Font;
   tag?: 'span' | 'p';
+  style?: CSSProperties;
 }
 
 function Text({
         children,
         color,
         $fontType,
-        tag
-    }:Props):JSX.Element{
+        tag,
+        style
+    }: TextProps):JSX.Element{
     return (
         <StyledText
-            style={{color}}  
-            $fontType={$fontType}
+            $fontType={$fontType}  
             as={tag}
+           style={{color, ...style}}
         >
         {children}
         </StyledText>
@@ -34,5 +36,4 @@ export default Text;
 
 const StyledText = styled.p<{ $fontType: Font;}>`
   ${({ $fontType }) => font[$fontType]}
-  background-color: red;
 `;
