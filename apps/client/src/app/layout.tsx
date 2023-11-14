@@ -1,4 +1,5 @@
 import Provider from 'client/components/Provider'
+import StyledComponentsRegistry from 'client/lib/registry'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -14,9 +15,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Provider>
-          {children}
-        </Provider>
+        <StyledComponentsRegistry>
+          <Provider>
+            {children}
+          </Provider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   )
