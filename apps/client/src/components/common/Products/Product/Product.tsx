@@ -27,7 +27,7 @@ function ProductBox ({id, name, price, like, isInStock, imgSrc}: Product): JSX.E
 export default ProductBox;
 
 const Container = styled.div` 
-  width: calc(25% - 40px);
+  
   height: 25rem;
   min-width: 16.063rem;
 

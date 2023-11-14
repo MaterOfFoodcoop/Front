@@ -36,8 +36,8 @@ function Products ({}: ContentProps): JSX.Element {
     <Container>
       <ProductContainer>
         {data.map( ({id, name, price, like, isInStock, imgSrc}) => (
-            <Link key={id} href={`/product/${id}`}>
-            <ProductBox name={name} price={price} like={like} isInStock={isInStock} id={0} imgSrc={imgSrc}/>
+            <Link key={id} href={`/product/${id}`} passHref style={{width: `calc(25% - 40px)`, minWidth: 'fit-content'}}>
+              <ProductBox name={name} price={price} like={like} isInStock={isInStock} id={0} imgSrc={imgSrc}/>
             </Link>
           )
         )}
@@ -60,8 +60,8 @@ const Container = styled.div`
 const ProductContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
   width: 100%;
+  gap: 40px;
 `
 
 const PaginationContainer = styled.div`
