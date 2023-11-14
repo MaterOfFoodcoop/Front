@@ -2,17 +2,16 @@ import styled from "styled-components";
 import { color, font } from "ui/styles";
 import Button from "ui/components/Button"
 import SearchIcon from "client/assets/SearchIcon";
-import Text from "ui/components/Text";
 
 function SearchBox (): JSX.Element{
     return(
         <Box>
             <SearchBar>
                 <SearchIcon />
-                <Input placeholder="원하는 상품을 검색해 보세요."/>
+                <Input placeholder="Q&A를 검색해 보세요."/>
             </SearchBar>    
             <Button>
-                <Text $fontType={"Button"}>검색</Text>
+                질문 작성하기
             </Button>
         </Box>
     );
@@ -26,19 +25,21 @@ const Box = styled.div`
     justify-content: space-between;
     margin: 5rem 0;
     gap: 2rem;
+    word-break: keep-all;
 `
 
 const SearchBar = styled.div`
+    background-color: ${color.gray50};
     display: flex;
     justify-content: space-between;
     gap: 20px;
     align-items: center;
     border-radius: 20px;
-    border: 3px solid ${color.gray50};
+    border:  2px solid ${color.gray50};
     height: 3.875rem;
     width: 100%;
     height: 100%;
-    padding: 20px 50px;
+    padding: 20px;
 
     transition: 0.3s ease;
     &:focus-within{
@@ -47,6 +48,7 @@ const SearchBar = styled.div`
 `
 
 const Input = styled.input`
+    background-color: ${color.gray50};
     outline: none;
     border: none;
     font-size: 1.125rem;
@@ -54,8 +56,7 @@ const Input = styled.input`
     height: 100%;
     
     &::placeholder{
-        font-family: "nanumSquareNeo";
-        color:  ${color.gray400};    
         ${font['Placeholder']};
-  }
+        color: ${color.gray400}    
+    }
 `

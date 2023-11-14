@@ -31,10 +31,12 @@ export default Button;
 const CustomButton = styled.button<ButtonProps>`
   word-break: keep-all;
   color: white;
+  font-family: "nanumSquareNeo";
   background-color: ${color.yellow};
   border-radius: 1.25rem;
   height: 3.875rem;
   padding: 0.3rem 2rem;
   font-size: 1.125rem;
-  font-weight: 300;
+  font-weight: 700;
+  white-space: nowrap;
 `;

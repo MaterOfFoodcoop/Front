@@ -4,7 +4,6 @@ import Header from 'client/components/common/Header/Header';
 import type { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
-
 interface Props {
   children: ReactNode;
 }

@@ -1,17 +1,19 @@
 'use client'
 
+import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 import { color } from 'ui/styles';
 
 interface HeaderProps {}
 
 function Header ({}: HeaderProps): JSX.Element {
-    return (
+  const pathname = usePathname();
+  return (
       <StyledHeader>
         <Nav>
-          <Logo href='/'>와라!매점</Logo>
-          <Link href='/recommand'>가격대별 추천</Link>
-          <Link href='/request'>Q&A</Link>
+          <Link href='/' $active={pathname === '/'}> 와라!매점</Link>
+          <Link href='/recommand' $active={pathname === '/recommand'}>가격대별 추천</Link>
+          <Link href='/qna' $active={pathname === '/qna'}>Q&A</Link>
         </Nav>
       </StyledHeader>
     );
@@ -20,6 +22,7 @@ function Header ({}: HeaderProps): JSX.Element {
 export default Header;
 
 const StyledHeader = styled.header`
+  z-index: 1;
   position: sticky;
   top: 0;
   width: 100%;
@@ -40,13 +43,11 @@ const Nav = styled.nav`
   gap: 4rem;
 `
 
-const Logo = styled.a`
-  font-weight: 800;
-  font-size: 1.375rem;
-  color: black;
-`
-const Link = styled.a`
+const Link = styled.a<{ $active: boolean }>`
   font-weight: 800;
   font-size: 1.25rem;
-  color: ${color.gray200};
+  color: ${props => (props.$active ? 'black' : color.gray200)};
+  font-family: "nanumSquareNeo";
+  font-weight: 800;
+  font-size: 20px;
 `
