@@ -10,7 +10,7 @@ interface TextProps extends HTMLAttributes<HTMLSpanElement> {
   children: ReactNode;
   color?: CSSProperties['color'];
   $fontType: Font;
-  tag?: 'span' | 'p';
+  tag?: "span" | "p";
   style?: CSSProperties;
 }
 
@@ -34,6 +34,6 @@ function Text({
 
 export default Text;
 
-const StyledText = styled.p<{ $fontType: Font;}>`
+const StyledText = styled.span<{ $fontType: Font;}>`
   ${({ $fontType }) => font[$fontType]}
 `;

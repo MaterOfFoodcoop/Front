@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import FilterTab from "./FilterTab/FilterTab";
 import styled from 'styled-components';
 
@@ -14,18 +14,21 @@ const getFilterItems = (items: '상품' | number): string[] => {
 
 function FilterTabs({ items }: ProductListProps): JSX.Element {
   const productItems = useMemo(() => getFilterItems(items), [items]);
+  const [activeTab, setActiveTab] = useState(productItems[0]);
 
   return (
     <Container>
       {productItems.map((item, index) => (
-        <FilterTab key={index} name={item} />
+        <FilterTab key={index} name={item} 
+          $active={item === activeTab}
+          onClick={() => setActiveTab(item)}
+        />
       ))}
     </Container>
   );
 };
 
 export default FilterTabs;
-
 
 const Container = styled.div`
   display: flex;

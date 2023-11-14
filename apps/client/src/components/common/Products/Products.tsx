@@ -34,8 +34,8 @@ function Products ({}: ContentProps): JSX.Element {
   return (
     <Container>
       <ProductContainer>
-        {data.map(({id, name, price, like, isInStock}) => (
-            <ProductBox key={id} name={name} price={price} like={like} isInStock={isInStock} id={0} imgSrc={''}/>
+        {data.map( ({id, name, price, like, isInStock, imgSrc}) => (
+            <ProductBox key={id} name={name} price={price} like={like} isInStock={isInStock} id={0} imgSrc={imgSrc}/>
           )
         )}
       </ProductContainer>
@@ -52,12 +52,13 @@ export default Products;
 
 
 const Container = styled.div`
-  margin: 40px 0px;
+  margin: 5rem 0;
 `
 const ProductContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
+  width: 100%;
 `
 
 const PaginationContainer = styled.div`

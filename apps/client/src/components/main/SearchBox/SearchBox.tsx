@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { color } from "ui/styles";
+import { color, font } from "ui/styles";
 import Button from "ui/components/Button"
 import SearchIcon from "client/assets/SearchIcon";
+import Text from "ui/components/Text";
 
 function SearchBox (): JSX.Element{
     return(
@@ -11,7 +12,7 @@ function SearchBox (): JSX.Element{
                 <Input placeholder="원하는 상품을 검색해 보세요."/>
             </SearchBar>    
             <Button>
-                검색
+                <Text $fontType={"Button"}>검색</Text>
             </Button>
         </Box>
     );
@@ -33,11 +34,11 @@ const SearchBar = styled.div`
     gap: 20px;
     align-items: center;
     border-radius: 20px;
-    border:  2px solid ${color.gray50};
+    border: 3px solid ${color.gray50};
     height: 3.875rem;
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 20px 50px;
 
     transition: 0.3s ease;
     &:focus-within{
@@ -53,7 +54,8 @@ const Input = styled.input`
     height: 100%;
     
     &::placeholder{
-        font-weight: 300;
-        color: ${color.gray400}    
-    }
+        font-family: "nanumSquareNeo";
+        color:  ${color.gray400};    
+        ${font['Placeholder']};
+  }
 `
