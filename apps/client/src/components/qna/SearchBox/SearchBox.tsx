@@ -9,7 +9,7 @@ function SearchBox (): JSX.Element{
             <SearchBar>
                 <SearchIcon />
                 <Input placeholder="Q&A를 검색해 보세요."/>
-            </SearchBar>    
+            </SearchBar> 
             <Button>
                 질문 작성하기
             </Button>
