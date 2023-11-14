@@ -7,7 +7,7 @@ import Text from 'ui/components/Text';
 import { color } from 'ui/styles';
 
 
-function ProductBox ({name, price, like, isInStock, imgSrc}: Product): JSX.Element {
+function ProductBox ({id, name, price, like, isInStock, imgSrc}: Product): JSX.Element {
     return (
       <Container>
           <ImgBox>
@@ -17,7 +17,7 @@ function ProductBox ({name, price, like, isInStock, imgSrc}: Product): JSX.Eleme
               <InnerRow><Text $fontType='SubTitle2'>{name}</Text><Badge $isInStock={isInStock} /></InnerRow>
             <Row>
               <InnerRow><Text $fontType='SubTitle3'><MoneyIcon>₩</MoneyIcon> {price}</Text></InnerRow>
-              <InnerRow style={{cursor: "pointer"}}><LikeIcon/><Text $fontType='SubTitle3' style={{color: `${color.gray100}`}}>{like}</Text></InnerRow>
+              <InnerRow style={{cursor: "pointer"}}><LikeIcon width={'17px'} height={'15px'}/><Text $fontType='SubTitle3' style={{color: `${color.gray100}`}}>{like}</Text></InnerRow>
             </Row>
           </TextContents>
       </Container>

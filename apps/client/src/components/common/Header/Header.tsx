@@ -13,7 +13,7 @@ function Header ({}: HeaderProps): JSX.Element {
         <Nav>
           <Link href='/' $active={pathname === '/'}> 와라!매점</Link>
           <Link href='/recommand' $active={pathname === '/recommand'}>가격대별 추천</Link>
-          <Link href='/request' $active={pathname === '/request'}>Q&A</Link>
+          <Link href='/qna' $active={pathname === '/qna'}>Q&A</Link>
         </Nav>
       </StyledHeader>
     );

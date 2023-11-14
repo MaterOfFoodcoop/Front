@@ -1,20 +1,19 @@
 'use client'
 
 import styled from 'styled-components';
-import { MAIN_PRODUCT_DATA } from 'client/mocks/main/main';
+import { QNA_QUESTION_DATA } from 'client/mocks/qna/qna';
 import { Pagination } from '@mui/material';
 import { ChangeEvent, useEffect, useState } from 'react';
-import ProductBox from './Product/Product';
-import Link from 'next/link';
+import QuestionItem from './QuestionItem/QuestionItem';
 
-interface ContentProps {
+interface Props {
   subject?: string;
   description?: string;
 }
 
-function Products ({}: ContentProps): JSX.Element {
-  const dummydata = MAIN_PRODUCT_DATA;
-  const ITEMS_PER_PAGE = 8;
+function Questions ({}: Props): JSX.Element {
+  const dummydata = QNA_QUESTION_DATA;
+  const ITEMS_PER_PAGE = 4;
   const LAST_PAGE = Math.ceil(dummydata.length / ITEMS_PER_PAGE);
   
   const [page, setPage] = useState(1);
@@ -35,33 +34,30 @@ function Products ({}: ContentProps): JSX.Element {
   return (
     <Container>
       <ProductContainer>
-        {data.map( ({id, name, price, like, isInStock, imgSrc}) => (
-            <Link key={id} href={`/product/${id}`}>
-            <ProductBox name={name} price={price} like={like} isInStock={isInStock} id={0} imgSrc={imgSrc}/>
-            </Link>
+        {data.map((data, idx) => (  
+            <QuestionItem key={idx} id={data.id} title={data.title} createdDate={data.createdDate} isAnswered={data.isAnswered} content={data.content}/>
           )
         )}
       </ProductContainer>
       
       <PaginationContainer>
         <Pagination count={LAST_PAGE} defaultPage={1} boundaryCount={2} 
-          size="large" onChange={handlePage}/>
+          color="standard" size="large" onChange={handlePage}/>
       </PaginationContainer>
     </Container>
   );
 }
   
-export default Products;
+export default Questions;
 
 
 const Container = styled.div`
-  margin: 5rem 0;
+  margin: 40px 0px;
 `
 const ProductContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 40px;
-  width: 100%;
 `
 
 const PaginationContainer = styled.div`
