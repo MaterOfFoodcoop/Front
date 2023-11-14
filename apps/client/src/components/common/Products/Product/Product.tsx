@@ -1,7 +1,9 @@
 'use client'
 
 import LikeIcon from 'client/assets/LikeIcon';
+import { Product } from 'client/types/product/product';
 import styled from 'styled-components';
+import Text from 'ui/components/Text';
 import { color } from 'ui/styles';
 
 interface ProductProps {
@@ -11,7 +13,7 @@ interface ProductProps {
   isInStock: boolean;
 }
 
-function Product ({name, price, like, isInStock}: ProductProps): JSX.Element {
+function ProductBox ({id, name, price, like, isInStock, imgSrc}: Product): JSX.Element {
     return (
       <Container>
           <ImgBox>
@@ -20,15 +22,15 @@ function Product ({name, price, like, isInStock}: ProductProps): JSX.Element {
           <TextContents>
               <InnerRow><span style={{fontWeight: '800', fontSize:'18px'}}>{name}</span><Badge $isInStock={isInStock} /></InnerRow>
             <Row>
-              <InnerRow style={{fontWeight: '700', fontSize:'16px'}}> <MoneyIcon>₩</MoneyIcon> {price}</InnerRow>
-              <InnerRow><LikeIcon/><span style={{color: `${color.gray100}`}}>{like}</span></InnerRow>
+              <InnerRow><Text $fontType='SubTitle3'><MoneyIcon>₩</MoneyIcon> {price}</Text></InnerRow>
+              <InnerRow style={{cursor: "pointer"}}><LikeIcon width={'17px'} height={'15px'}/><Text $fontType='SubTitle3' style={{color: `${color.gray100}`}}>{like}</Text></InnerRow>
             </Row>
           </TextContents>
       </Container>
     );
   }
   
-export default Product;
+export default ProductBox;
 
 const Container = styled.div` 
   width: 354.7px;

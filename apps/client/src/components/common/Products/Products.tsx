@@ -1,10 +1,10 @@
 'use client'
 
 import styled from 'styled-components';
-import Product from './Product/Product';
 import { MAIN_PRODUCT_DATA } from 'client/mocks/main/main';
 import { Pagination } from '@mui/material';
 import { ChangeEvent, useEffect, useState } from 'react';
+import ProductBox from './Product/Product';
 
 interface ContentProps {
   subject?: string;
@@ -34,8 +34,8 @@ function Products ({}: ContentProps): JSX.Element {
   return (
     <Container>
       <ProductContainer>
-        {data.map( ({id, name, price, like, isInStock}) => (
-            <Product key={id} name={name} price={price} like={like} isInStock={isInStock}/>
+        {data.map(({id, name, price, like, isInStock}) => (
+            <ProductBox key={id} name={name} price={price} like={like} isInStock={isInStock} id={0} imgSrc={''}/>
           )
         )}
       </ProductContainer>

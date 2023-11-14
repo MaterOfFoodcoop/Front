@@ -10,13 +10,16 @@ interface ButtonProps
     HTMLButtonElement
   > {
   children?: ReactNode;
+  style?: React.CSSProperties;
 }
 
 function Button ({
     children,
+    style
   }: ButtonProps): JSX.Element {
     return (
       <CustomButton
+        style={style}
       >
         {children}
       </CustomButton>

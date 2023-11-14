@@ -6,7 +6,6 @@ import SummaryContent from "client/components/common/SummaryContent/SummaryConte
 import SearchBox from "client/components/main/SearchBox/SearchBox";
 import AppLayout from "client/layouts/AppLayout";
 import styled from "styled-components";
-import Text from "ui/components/Text";
 
 export default function Home() {
   return (
