@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { color, font } from "ui/styles";
-import Button from "ui/components/Button"
+import SearchButton from "ui/components/Button/SearchButton"
 import SearchIcon from "client/assets/SearchIcon";
 import Text from "ui/components/Text";
 
@@ -11,9 +11,9 @@ function SearchBox (): JSX.Element{
                 <SearchIcon />
                 <Input placeholder="원하는 상품을 검색해 보세요."/>
             </SearchBar>    
-            <Button>
+            <SearchButton>
                 <Text $fontType={"Button"}>검색</Text>
-            </Button>
+            </SearchButton>
         </Box>
     );
 }

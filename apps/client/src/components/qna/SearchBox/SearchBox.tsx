@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { color, font } from "ui/styles";
-import Button from "ui/components/Button"
+import SearchButton from "ui/components/Button/SearchButton"
 import SearchIcon from "client/assets/SearchIcon";
+import Link from "next/link";
 
 function SearchBox (): JSX.Element{
     return(
@@ -10,9 +11,11 @@ function SearchBox (): JSX.Element{
                 <SearchIcon />
                 <Input placeholder="Q&A를 검색해 보세요."/>
             </SearchBar> 
-            <Button>
+            <Link href={"qna/write"} passHref>
+            <SearchButton>
                 질문 작성하기
-            </Button>
+            </SearchButton>
+            </Link>
         </Box>
     );
 }
