@@ -191,6 +191,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@mui/material':
+        specifier: ^5.14.17
+        version: 5.14.17(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.5)(react-dom@18.2.0)(react@18.2.0)
       eslint:
         specifier: ^8.53.0
         version: 8.53.0
