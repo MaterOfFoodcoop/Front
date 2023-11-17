@@ -4,15 +4,20 @@ import Button from "ui/components/Button"
 import { SearchIcon } from "ui/icon";
 import Text from "ui/components/Text";
 
-function SearchBox (): JSX.Element{
+interface SearchBox {
+    placeholder: string,
+    buttonText: string
+}
+
+function SearchBox ({placeholder, buttonText}: SearchBox): JSX.Element{
     return(
         <Box>
             <SearchBar>
                 <SearchIcon />
-                <Input placeholder="원하는 상품을 검색해 보세요."/>
-            </SearchBar>    
+                <Input placeholder={placeholder} />
+            </SearchBar>
             <Button>
-                <Text $fontType={"Button"}>검색</Text>
+                <Text $fontType={"Button"}>{buttonText}</Text>
             </Button>
         </Box>
     );
@@ -26,6 +31,7 @@ const Box = styled.div`
     justify-content: space-between;
     margin: 5rem 0;
     gap: 2rem;
+    word-break: keep-all;
 `
 
 const SearchBar = styled.div`
@@ -42,7 +48,7 @@ const SearchBar = styled.div`
 
     transition: 0.3s ease;
     &:focus-within{
-        border-color: ${color.gray400};  
+        border-color: ${color.gray400};
     }
 `
 
