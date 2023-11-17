@@ -1,7 +1,7 @@
 'use client'
 
-import Comments from "client/components/detail/Comments/Comments";
-import ProductBox from "client/components/detail/Product/Product";
+import Comments from "ui/components/detail/Comments/Comments";
+import ProductBox from "ui/components/detail/Product/Product";
 import AppLayout from "client/layouts/AppLayout"
 import { usePathname } from "next/navigation"
 import styled from "styled-components"

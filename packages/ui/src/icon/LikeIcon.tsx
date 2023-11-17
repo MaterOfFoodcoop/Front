@@ -6,5 +6,4 @@ const LikeIcon = (props: SVGProps<SVGSVGElement>) => (
     </svg>
   );
     
-  export default LikeIcon;
-    
+export default LikeIcon;

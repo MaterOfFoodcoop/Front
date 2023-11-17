@@ -1,6 +1,6 @@
 'use client';
 
-import Header from 'client/components/common/Header/Header';
+import Header from 'ui/components/Header/Header';
 import type { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
