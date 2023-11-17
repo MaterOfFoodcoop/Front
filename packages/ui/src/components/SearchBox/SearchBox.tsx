@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { color, font } from "ui/styles";
-import Button from "ui/components/Button";
+import Button from "ui/components/Button/SearchButton";
 import { SearchIcon } from "ui/icon";
 import Text from "ui/components/Text";
 
