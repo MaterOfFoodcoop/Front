@@ -36,6 +36,7 @@ module.exports = {
     "import/no-named-as-default": "off",
     "unicorn/filename-case": "off",
     "import/prefer-default-export": "off",
-    "import/no-default-export" : "off"
+    "import/no-default-export": "off",
+    "import/no-extraneous-dependencies": "off",
   }
 };
