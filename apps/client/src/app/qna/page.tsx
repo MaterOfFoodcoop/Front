@@ -1,8 +1,8 @@
 'use client'
 
-import SummaryContent from "client/components/common/SummaryContent/SummaryContent"
-import Questions from "client/components/qna/Questions/Questions"
-import SearchBox from "client/components/qna/SearchBox/SearchBox"
+import SummaryContent from "ui/components/SummaryContent/SummaryContent"
+import Questions from "ui/components/qna/Questions/Questions"
+import SearchBox from "ui/components/qna/SearchBox/SearchBox"
 import AppLayout from "client/layouts/AppLayout"
 import styled from "styled-components"
 

@@ -1,9 +1,9 @@
 'use client'
 
-import FilterTabs from "client/components/common/FilterTabs/FilterTabs";
-import Products from "client/components/common/Products/Products";
-import SummaryContent from "client/components/common/SummaryContent/SummaryContent";
-import SearchBox from "client/components/main/SearchBox/SearchBox";
+import FilterTabs from "ui/components/FilterTabs/FilterTabs";
+import Products from "ui/components/Products/Products";
+import SummaryContent from "ui/components/SummaryContent/SummaryContent";
+import SearchBox from "ui/components/main/SearchBox/SearchBox";
 import AppLayout from "client/layouts/AppLayout";
 import styled from "styled-components";
 
