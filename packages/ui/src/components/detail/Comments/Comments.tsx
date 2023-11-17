@@ -1,6 +1,6 @@
 'use client'
 
-import LikeIcon from 'client/assets/LikeIcon';
+import { LikeIcon } from 'ui/icon';
 import { DETAIL_COMMENT_DATA } from 'client/mocks/detail/comments';
 import { Comment } from 'client/types/comment/comment';
 import { useState } from 'react';

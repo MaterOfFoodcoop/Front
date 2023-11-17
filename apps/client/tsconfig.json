@@ -21,9 +21,10 @@
     "paths": {
       "client/*": ["./src/*"],
       "api/*": ["../../packages/api/*"],
-      "ui/*": ["../../packages/ui/src/*"]
+      "ui/*": ["../../packages/ui/src/*"],
+      "icon/*": ["../../packages/ui/src/icon/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../../packages/eslint-config-custom/icon/LikeIcon.tsx"],
   "exclude": ["node_modules"]
 }
