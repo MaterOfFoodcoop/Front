@@ -1,35 +1,35 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
 
 const marks = [
   {
     value: 0,
-    label: '1,000',
+    label: "1,000",
   },
   {
     value: 17,
-    label: '2,000',
+    label: "2,000",
   },
   {
     value: 33,
-    label: '3,000',
+    label: "3,000",
   },
   {
     value: 50,
-    label: '5,000',
+    label: "5,000",
   },
   {
     value: 67,
-    label: '10,000',
+    label: "10,000",
   },
   {
     value: 83,
-    label: '30,000',
+    label: "30,000",
   },
   {
     value: 100,
-    label: '50,000',
+    label: "50,000",
   },
 ];
 
@@ -43,7 +43,7 @@ function valueLabelFormat(value: number) {
 
 export default function DiscreteSliderValues() {
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: "100%" }}>
       <Slider
         aria-label="Restricted values"
         defaultValue={0}
