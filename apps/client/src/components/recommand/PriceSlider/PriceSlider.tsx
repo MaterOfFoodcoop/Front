@@ -1,34 +1,35 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
+import styled from 'styled-components';
 
 const marks = [
   {
-    value: 0,
+    value: 1,
     label: "1,000",
   },
   {
-    value: 17,
+    value: 2,
     label: "2,000",
   },
   {
-    value: 33,
+    value: 3,
     label: "3,000",
   },
   {
-    value: 50,
+    value: 4,
     label: "5,000",
   },
   {
-    value: 67,
+    value: 5,
     label: "10,000",
   },
   {
-    value: 83,
+    value: 6,
     label: "30,000",
   },
   {
-    value: 100,
+    value: 7,
     label: "50,000",
   },
 ];
@@ -44,15 +45,30 @@ function valueLabelFormat(value: number) {
 export default function DiscreteSliderValues() {
   return (
     <Box sx={{ width: "100%" }}>
-      <Slider
+      <PriceSlider
         aria-label="Restricted values"
-        defaultValue={0}
+        defaultValue={1}
         getAriaValueText={valuetext}
         step={null}
         valueLabelDisplay="auto"
         marks={marks}
-        color="secondary"
+        max={7}
+        min={1}
       />
     </Box>
   );
 }
+
+const PriceSlider = styled(Slider)`
+  .MuiSlider-thumb {
+    color: white;
+  }
+  .MuiSlider-rail {
+    color: #f2f2f2;
+  }
+  .MuiSlider-track {
+    color: #ffd600;
+  }
+  color: #a0a0a0;
+
+`

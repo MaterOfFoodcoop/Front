@@ -1,19 +1,40 @@
 'use client'
 
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { color } from 'ui/styles';
+import Modal from './AdminLoginModal/AdminLoginModal';
+import { PersonIcon } from 'ui/icon';
 
 interface HeaderProps {}
 
 function Header ({}: HeaderProps): JSX.Element {
   const pathname = usePathname();
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  // if (isModalOpen) {
+  //   document.body.style.overflow = 'hidden';
+  // } else {
+  //   document.body.style.overflow = 'auto';
+  // }
+
   return (
       <StyledHeader>
         <Nav>
-          <Link href='/' $active={pathname === '/'}> 와라!매점</Link>
+          <Link href='/'>
+            <Text>와라! 매점</Text>
+          </Link>
           <Link href='/recommand' $active={pathname === '/recommand'}>가격대별 추천</Link>
           <Link href='/qna' $active={pathname === '/qna'}>Q&A</Link>
+          <LoginIcon onClick={openModal}>
+            <PersonIcon />
+          </LoginIcon>
+          {isModalOpen && <Modal isOpen={isModalOpen} onClose={closeModal} />}
         </Nav>
       </StyledHeader>
     );
@@ -51,3 +72,22 @@ const Link = styled.a<{ $active: boolean }>`
   font-weight: 800;
   font-size: 20px;
 `
+
+ const Text = styled.p`
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #000000;
+  font-family: "nanumSquareNeo";
+  font-weight: 800;
+  font-size: 22px;
+ `
+
+ const LoginIcon = styled.button`
+   &:hover {
+    cursor: pointer;
+    .color {
+      transition: all 0.3s ease;
+      fill: ${color.gray600};
+    }
+   }
+ `
