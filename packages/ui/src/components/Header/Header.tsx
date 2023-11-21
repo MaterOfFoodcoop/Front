@@ -83,6 +83,9 @@ const Link = styled.a<{ $active: boolean }>`
  `
 
  const LoginIcon = styled.button`
+  position: absolute;
+  right: 7.5rem;
+  
    &:hover {
     cursor: pointer;
     .color {
