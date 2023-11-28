@@ -70,7 +70,7 @@ function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
               <InfoInputBox>
                 <InfoInputLabel>비밀번호</InfoInputLabel>
                   <InfoInput 
-                    type="text" 
+                    type="password" 
                     id="password" 
                     name="password" 
                     onChange={loginHandler}

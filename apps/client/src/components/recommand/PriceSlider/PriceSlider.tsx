@@ -1,7 +1,9 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import styled from 'styled-components';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { calculateSizeAdjustValues } from "../../../../node_modules/next/dist/server/font-utils";
+import { useState } from "react";
 
 const marks = [
   {
@@ -34,41 +36,75 @@ const marks = [
   },
 ];
 
-function valuetext(value: number) {
-  return `${value}`;
-}
-
-function valueLabelFormat(value: number) {
-  return marks.findIndex((mark) => mark.value === value) + 1;
-}
+const theme = createTheme({
+  components: {
+    MuiSlider: {
+      styleOverrides: {
+        thumb: {
+          color: "#ffffff"
+        },
+        rail: {
+          color: "#f2f2f2"
+        },
+        track: {
+          color: "#ffd600"
+        },
+        markLabel: {
+          color: "#c9c9c9",
+          margin: "10px 0px",
+          fontSize: "18px",
+          fontFamily: "nanumSquareNeo"
+        },
+        markLabelActive: {
+          color: "#ffd600",
+        }
+      },
+    },
+  },
+});
 
 export default function DiscreteSliderValues() {
+  const [selectedValue, setSelectedValue] = useState(1);
+
+  const handleChange = (event, value) => {
+    setSelectedValue(value);
+  };
+
+  const handleMarkClick = (mark) => {
+    setSelectedValue(mark.value);
+  };
+
+  function valuetext(value: number) {
+    return `${value}`;
+  }
+
+  function valueLabelFormat(value: number) {
+    return marks.findIndex((mark) => mark.value === value) + 1;
+  }
+
   return (
-    <Box sx={{ width: "100%" }}>
-      <PriceSlider
-        aria-label="Restricted values"
-        defaultValue={1}
-        getAriaValueText={valuetext}
-        step={null}
-        valueLabelDisplay="auto"
-        marks={marks}
-        max={7}
-        min={1}
-      />
+    <Box sx={{ width: "100%", justifyContent: 'center', alignItems: 'center' }}>
+      <ThemeProvider theme={theme}>
+        <PriceSlider
+          onChange={handleChange}
+          onClickMark={handleMarkClick}
+          aria-label="Restricted values"
+          defaultValue={1}
+          getAriaValueText={valuetext}
+          step={null}
+          marks={marks}
+          max={7}
+          min={1}
+        />
+      </ThemeProvider>
     </Box>
   );
 }
 
 const PriceSlider = styled(Slider)`
-  .MuiSlider-thumb {
-    color: white;
-  }
-  .MuiSlider-rail {
-    color: #f2f2f2;
-  }
-  .MuiSlider-track {
-    color: #ffd600;
-  }
-  color: #a0a0a0;
+  margin-top: 10.4rem;
+  margin-bottom: 8.4rem;
 
+  font-size: 1.125rem;
+  height: 0.8rem;
 `
