@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material";
-import Provider from "client/components/Provider";
+import Provider from "ui/components/Provider";
 import StyledComponentsRegistry from "client/lib/registry";
 import type { Metadata } from "next";
 import { theme } from "ui/styles";

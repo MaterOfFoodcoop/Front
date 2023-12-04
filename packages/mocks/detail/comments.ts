@@ -1,4 +1,4 @@
-import { Comment } from "client/types/comment/comment";
+import { Comment } from "../../types/comment/comment";
 
 export const DETAIL_COMMENT_DATA: Comment[] = [
  {
@@ -18,3 +18,4 @@ export const DETAIL_COMMENT_DATA: Comment[] = [
     comment: '단지 우유 내 영혼의 단짝이야'
  },
 ]
+

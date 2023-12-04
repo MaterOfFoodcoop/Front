@@ -1,4 +1,4 @@
-import type { Product } from 'client/types/product/product';
+import type { Product } from '../../types/product/product';
 
 export const MAIN_PRODUCT_DATA: Product[] = [
   {

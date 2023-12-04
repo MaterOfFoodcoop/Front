@@ -1,7 +1,7 @@
 'use client'
 
 import styled from 'styled-components';
-import { QNA_QUESTION_DATA } from 'client/mocks/qna/qna';
+import { QNA_QUESTION_DATA } from 'ui/../../mocks/qna/qna';
 import { Pagination } from '@mui/material';
 import { ChangeEvent, useEffect, useState } from 'react';
 import QuestionItem from './QuestionItem/QuestionItem';

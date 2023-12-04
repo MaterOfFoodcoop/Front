@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { color, font } from "ui/styles";
 import SearchButton from "ui/components/Button/SearchButton"
-import SearchIcon from "client/assets/SearchIcon";
+import SearchIcon from "ui/src/icon/SearchIcon";
 import Link from "next/link";
 
 function SearchBox (): JSX.Element{

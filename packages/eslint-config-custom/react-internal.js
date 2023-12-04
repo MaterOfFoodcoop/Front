@@ -38,5 +38,6 @@ module.exports = {
     "import/prefer-default-export": "off",
     "import/no-default-export": "off",
     "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/consistent-type-imports": "off"
   }
 };

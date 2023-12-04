@@ -1,7 +1,7 @@
 'use client'
 
 import { LikeIcon } from 'ui/icon';
-import { Product } from 'client/types/product/product';
+import { Product } from 'types/product/product';
 import styled from 'styled-components';
 import Text from 'ui/components/Text';
 import { color } from 'ui/styles';

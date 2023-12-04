@@ -1,7 +1,8 @@
-import { Comment } from "client/types/comment/comment";
 import styled from "styled-components";
+import { Comment } from "ui/../../types/comment/comment";
 import Text from "ui/components/Text";
 import { color } from "ui/styles";
+
 
 export default function CommentComponent({createdDate, comment} : Comment ): JSX.Element{
     return(

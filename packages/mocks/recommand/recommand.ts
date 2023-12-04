@@ -1,4 +1,4 @@
-import type { Product } from 'client/types/product/product';
+import type { Product } from '../../types/product/product';
 
 export const RECOMMAND_COMBINATION_DATA: {id: number, products: Product[]}[] = [
   {

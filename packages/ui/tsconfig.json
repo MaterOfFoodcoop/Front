@@ -2,10 +2,11 @@
   "extends": "tsconfig/react-library.json",
   "include": [".", "../../apps/client/src/components/detail"],
   "compilerOptions": {
-    "rootDir": ".",
+    "rootDir": "../../",
     "baseUrl": "./src",
     "paths": {
       "ui/*": ["./*"],
+      "client/*": ["../../apps/client/src/*"],
     }
   },
   "exclude": ["dist", "build", "node_modules"],

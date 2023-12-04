@@ -5,4 +5,3 @@ const HamburgerIcon = () => (
   );
     
 export default HamburgerIcon;
-    

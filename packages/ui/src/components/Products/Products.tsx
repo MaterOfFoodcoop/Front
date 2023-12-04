@@ -1,7 +1,7 @@
 'use client'
 
 import styled from 'styled-components';
-import { MAIN_PRODUCT_DATA } from 'client/mocks/main/main';
+import { MAIN_PRODUCT_DATA } from 'ui/../../mocks/main/main';
 import { Pagination } from '@mui/material';
 import { ChangeEvent, useEffect, useState } from 'react';
 import ProductBox from './Product/Product';

@@ -66,14 +66,12 @@ const theme = createTheme({
 export default function DiscreteSliderValues() {
   const [selectedValue, setSelectedValue] = useState(1);
 
-  const handleChange = (event, value) => {
-    setSelectedValue(value);
+  const handleChange = (event: Event, newValue: number | number[], activeThumb: number) => {
+    if (typeof newValue === 'number') {
+      setSelectedValue(newValue);
+    }
   };
-
-  const handleMarkClick = (mark) => {
-    setSelectedValue(mark.value);
-  };
-
+  
   function valuetext(value: number) {
     return `${value}`;
   }
@@ -87,7 +85,6 @@ export default function DiscreteSliderValues() {
       <ThemeProvider theme={theme}>
         <PriceSlider
           onChange={handleChange}
-          onClickMark={handleMarkClick}
           aria-label="Restricted values"
           defaultValue={1}
           getAriaValueText={valuetext}

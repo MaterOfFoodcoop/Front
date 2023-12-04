@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 import styled from 'styled-components';
 
 import { color, font } from 'ui/styles';
@@ -14,7 +14,7 @@ function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
   const [userId, setUserId] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
-  const loginHandler = (e) => {
+  const loginHandler = (e: ChangeEventHandler<HTMLInputElement>) => {
     const { id, password } = e.target;
     setUserId(id);
     setUserPassword(password);
