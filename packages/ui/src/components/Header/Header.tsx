@@ -26,7 +26,7 @@ function Header ({}: HeaderProps): JSX.Element {
   return (
       <StyledHeader>
         <Nav>
-          <Link href='/'>
+          <Link href='/' $active={true}>
             <Text>와라! 매점</Text>
           </Link>
           <Link href='/recommand' $active={pathname === '/recommand'}>가격대별 추천</Link>

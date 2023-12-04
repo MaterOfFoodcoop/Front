@@ -2,7 +2,7 @@
 
 import useBooleanState from 'client/hooks/useBooleanState';
 import { QNA_ANSWER_DATA } from 'ui/../../mocks/qna/answer';
-import { Question } from 'types/question/question';
+import { Question } from 'ui/../../types/question/question';
 import styled from 'styled-components';
 import Text from 'ui/components/Text';
 import { color } from 'ui/styles';

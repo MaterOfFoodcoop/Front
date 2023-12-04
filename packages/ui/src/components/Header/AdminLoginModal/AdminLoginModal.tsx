@@ -7,19 +7,22 @@ import { HamburgerIcon, CloseIcon } from 'ui/icon';
 
 interface AdminLoginProps {
   isOpen: boolean,
-  onClose(): React.MouseEventHandler<HTMLButtonElement>;
+  onClose: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
   const [userId, setUserId] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
-  const loginHandler = (e: ChangeEventHandler<HTMLInputElement>) => {
-    const { id, password } = e.target;
-    setUserId(id);
-    setUserPassword(password);
+  const loginHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    if (id === 'username') {
+      setUserId(value);
+    } else if (id === 'password') {
+      setUserPassword(value);
+    }
   }
-
+  
   // const loginClickHandler = () => {
   //   const id = userId;
   //   const password = userPassword;
