@@ -1,4 +1,4 @@
-import { Answer } from "client/types/question/question";
+import { Answer } from "../../types/question/question";
 
 export const QNA_ANSWER_DATA: Answer[] = [
     {
@@ -14,3 +14,4 @@ export const QNA_ANSWER_DATA: Answer[] = [
         content: '답변 내용3', 
     },
 ]
+

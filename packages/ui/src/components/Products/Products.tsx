@@ -1,7 +1,7 @@
 'use client'
 
 import styled from 'styled-components';
-import { MAIN_PRODUCT_DATA } from 'client/mocks/main/main';
+import { MAIN_PRODUCT_DATA } from 'ui/../../mocks/main/main';
 import { Pagination } from '@mui/material';
 import { ChangeEvent, useEffect, useState } from 'react';
 import ProductBox from './Product/Product';
@@ -36,7 +36,7 @@ function Products ({}: ContentProps): JSX.Element {
     <Container>
       <ProductContainer>
         {data.map( ({id, name, price, like, isInStock, imgSrc}) => (
-            <Link key={id} href={`/product/${id}`} passHref style={{width: `calc(25% - 40px)`, minWidth: 'fit-content'}}>
+            <Link key={id} href={`/product/${id}`} passHref style={{width: `calc(25% - 40px)`, minWidth: '16rem'}}>
               <ProductBox name={name} price={price} like={like} isInStock={isInStock} id={0} imgSrc={imgSrc}/>
             </Link>
           )

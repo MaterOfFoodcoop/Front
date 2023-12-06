@@ -1,8 +1,8 @@
 'use client'
 
 import { LikeIcon } from 'ui/icon';
-import { DETAIL_PRODUCT_DATA } from 'client/mocks/detail/detail';
-import { DetailProduct } from 'client/types/product/product';
+import { DETAIL_PRODUCT_DATA } from 'ui/../../mocks/detail/detail';
+import { DetailProduct } from 'ui/../../types/product/product';
 import { useState } from 'react';
 import styled from 'styled-components';
 import Text from 'ui/components/Text';

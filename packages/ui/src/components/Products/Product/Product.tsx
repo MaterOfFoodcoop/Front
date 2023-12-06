@@ -1,7 +1,7 @@
 'use client'
 
 import { LikeIcon } from 'ui/icon';
-import { Product } from 'client/types/product/product';
+import { Product } from 'ui/../../types/product/product';
 import styled from 'styled-components';
 import Text from 'ui/components/Text';
 import { color } from 'ui/styles';
@@ -27,7 +27,7 @@ function ProductBox ({id, name, price, like, isInStock, imgSrc}: Product): JSX.E
 export default ProductBox;
 
 const Container = styled.div` 
-  
+  width: 100%;
   height: 25rem;
   min-width: 16.063rem;
 

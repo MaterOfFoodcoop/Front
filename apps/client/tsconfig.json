@@ -8,7 +8,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -22,6 +22,7 @@
       "client/*": ["./src/*"],
       "api/*": ["../../packages/api/*"],
       "ui/*": ["../../packages/ui/src/*"],
+      "styles/*": ["../../packages/ui/src/styles/*"],
       "icon/*": ["../../packages/ui/src/icon/*"],
     }
   },

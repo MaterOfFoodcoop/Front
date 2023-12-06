@@ -3,8 +3,8 @@
 import FilterTabs from "ui/components/FilterTabs/FilterTabs";
 import Products from "ui/components/Products/Products";
 import SummaryContent from "ui/components/SummaryContent/SummaryContent";
-import PriceSlider from "client/components/recommand/PriceSlider/PriceSlider";
-import AppLayout from "client/layouts/AppLayout";
+import PriceSlider from "../../../../client/src/components/recommand/PriceSlider/PriceSlider";
+import AppLayout from "admin/layouts/AppLayout";
 import styled from "styled-components";
 
 function Recommand(){

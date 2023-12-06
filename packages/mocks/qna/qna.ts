@@ -1,4 +1,4 @@
-import { Question } from "client/types/question/question";
+import { Question } from "../../types/question/question";
 
 export const QNA_QUESTION_DATA: Question[] = [
  {

@@ -1,6 +1,6 @@
 'use client';
 
-import { GlobalStyle } from 'ui/styles';
+import { GlobalStyle } from 'ui/styles/index';
 import type { ReactNode } from 'react';
 
 interface Props {

@@ -1,14 +1,14 @@
 'use client'
 
 import { LikeIcon } from 'ui/icon';
-import { DETAIL_COMMENT_DATA } from 'client/mocks/detail/comments';
-import { Comment } from 'client/types/comment/comment';
+import { DETAIL_COMMENT_DATA } from 'ui/../../mocks/detail/comments';
+import { Comment } from 'ui/../../types/comment/comment';
 import { useState } from 'react';
 import styled from 'styled-components';
 import Text from 'ui/components/Text';
 import { color, font } from 'ui/styles';
 import CommentComponent from './Comment/CommentComponent';
-import Button from 'ui/components/Button';
+import Button from 'ui/components/Button/WriteButton';
 
 interface CommentsProps {
   id: number;
