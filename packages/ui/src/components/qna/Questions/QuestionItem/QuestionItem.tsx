@@ -1,6 +1,7 @@
 'use client'
 
-import useBooleanState from 'client/hooks/useBooleanState';
+import useBooleanState from '../../../../../../../apps/client/src/hooks/useBooleanState';
+import AnsweringBox from '../../../../../../../apps/admin/src/components/qna/AnsweringBox/AnsweringBox';
 import { QNA_ANSWER_DATA } from 'ui/../../mocks/qna/answer';
 import { Question } from 'ui/../../types/question/question';
 import styled from 'styled-components';
@@ -34,12 +35,14 @@ function QuestionItem ({id, title, createdDate, isAnswered, content}: Question )
           </Contents>
         </QuestionContainer>
 
-        {isOpen &&answer && (
+        {isOpen && answer && 
           <AnswerContainer>
             <Text $fontType='Header3'><Icon>A.</Icon></Text>
             <Text $fontType='Body'>{answer.content}</Text>
          </AnswerContainer>
-          )}
+        }
+
+        {isOpen && !answer && !isAnswered && <AnsweringBox />}
       </Container>
     );
   }
