@@ -1,17 +1,18 @@
 'use client'
 
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { color } from 'ui/styles';
-import Modal from './AdminLoginModal/AdminLoginModal';
+import AdminLoginModal from './AdminLoginModal/AdminLoginModal';
 import { PersonIcon } from 'ui/icon';
+// import { UserContext } from "apps/admin/src/context/UserContext";
 
 interface HeaderProps {}
 
 function Header ({}: HeaderProps): JSX.Element {
   const pathname = usePathname();
-  
+  // const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -31,10 +32,15 @@ function Header ({}: HeaderProps): JSX.Element {
           </Link>
           <Link href='/recommand' $active={pathname === '/recommand'}>가격대별 추천</Link>
           <Link href='/qna' $active={pathname === '/qna'}>Q&A</Link>
+          {/* {isLoggedIn && <Link href='/manage-product' $active={pathname === '/manage-product'}>상품 관리</Link>} */}
+          <Link href='/manage-product' $active={pathname === '/manage-product'}>상품 관리</Link>
           <LoginIcon onClick={openModal}>
+            {/* {isLoggedIn ? 
+              <Text>로그아웃</Text> : <PersonIcon /> 
+            } */}
             <PersonIcon />
           </LoginIcon>
-          {isModalOpen && <Modal isOpen={isModalOpen} onClose={closeModal} />}
+          {isModalOpen && <AdminLoginModal isOpen={isModalOpen} onClose={closeModal} />}
         </Nav>
       </StyledHeader>
     );

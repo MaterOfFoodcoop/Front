@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 
 import { color, font } from 'ui/styles';
@@ -11,35 +11,39 @@ interface AdminLoginProps {
 }
 
 function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
-  const [userId, setUserId] = useState("");
-  const [userPassword, setUserPassword] = useState("");
 
+  const [userId, setUserId] = useState("");
+  const [userPassword, setUserPassword] = useState(""); 
+
+  // 아이디, 비밀번호 저장
   const loginHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    if (id === 'username') {
+    if (id === 'userid') {
       setUserId(value);
     } else if (id === 'password') {
       setUserPassword(value);
     }
   }
   
-  // const loginClickHandler = () => {
-  //   const id = userId;
-  //   const password = userPassword;
+  // Admin 계정과 일치한다면 로그인
+  const loginClickHandler = async () => {
+    const id = userId;
+    const password = userPassword;
 
-  //   async fetch("http://localhost:8000/login", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       id,
-  //       password,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => console.log(res));
-  // }; 
+      // 백엔드 로그인 요청
+      await fetch("http://localhost:3001/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          password,
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => console.log(res));
+  }; 
 
   return (
     <>
@@ -62,11 +66,11 @@ function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
 
             <InfoForm>
               <InfoInputBox>
-                <InfoInputLabel htmlFor="username">아이디</InfoInputLabel>
+                <InfoInputLabel htmlFor="userid">아이디</InfoInputLabel>
                   <InfoInput 
                     type="text" 
-                    id="username" 
-                    name="username" 
+                    id="userid" 
+                    name="userid" 
                     onChange={loginHandler}
                   />
               </InfoInputBox>
@@ -81,7 +85,7 @@ function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
               </InfoInputBox>
 
               <ButtonArea>
-                <WriteButton style={{ backgroundColor: '#f9f9f9' }}>
+                <WriteButton style={{ backgroundColor: '#f9f9f9' }} onClick={loginClickHandler}>
                   로그인
                 </WriteButton>
               </ButtonArea>
@@ -104,7 +108,6 @@ const Container = styled.div`
   background: rgba(0, 0, 0, 0.10);
   backdrop-filter: blur(2px);
   z-index: 250;
-  cursor: pointer;
 
   left: 0;
   top: 0;
