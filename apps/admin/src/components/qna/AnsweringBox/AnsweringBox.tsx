@@ -3,20 +3,34 @@ import styled from "styled-components";
 import { color, font } from "ui/styles";
 import Text from 'ui/components/Text';
 
-function AnsweringBox (): JSX.Element{
+function AnsweringBox ({ onAnswerSubmit }): JSX.Element{
     const [answer, setAnswer] = useState("");
 
     const handleSubmit = (e) => {
       e.preventDefault();
+      onAnswerSubmit(answer);
       setAnswer("");
+    };
+
+    const resizeTextarea = (event) => {
+        event.target.style.height = 'auto';
+        event.target.style.height = `${event.target.scrollHeight}px`;
+    };
+
+    const handleChange = (event) => {
+        setAnswer(event.target.value);
+        resizeTextarea(event);
     };
 
     return(
         <AnswerBox onSubmit={handleSubmit}>
             <Text $fontType='Header3'><Icon>A.</Icon></Text>
             <AnswerInputArea>
-                <AnswerInput type="text" value={answer} onChange={e => setAnswer(e.target.value)} />
-                <SubmitButton type="submit" value="제출">등록</SubmitButton>
+                <AnswerInput 
+                    value={answer} 
+                    onChange={handleChange} 
+                />
+                <SubmitButton type="submit" value="답변">등록</SubmitButton>
             </AnswerInputArea>
         </AnswerBox>
     );
@@ -43,9 +57,23 @@ const Icon = styled.span`
   font-size: 1.75rem;
 `;
 
-// const AnswerInput = styled.textarea`
+const AnswerInput = styled.textarea`
+    width: 100%;
+    height: fit-content;
+    padding: 2rem;
+    border-radius: 1.25rem;
+    border: none;
+    &:focus {
+        outline: none;
+    }
+    background-color: #FFF7D0;
+    ${font.Body};   
+    resize: none; 
+    overflow: auto;
+`
+
+// const AnswerInput = styled.input`
 //     width: 100%;
-//     height: fit-content;
 //     padding: 2.1rem 2rem;
 //     border-radius: 1.25rem;
 //     border: none;
@@ -54,21 +82,7 @@ const Icon = styled.span`
 //     }
 //     background-color: #FFF7D0;
 //     ${font.Body};   
-//     resize: none; 
-//     overflow: hidden;
 // `
-
-const AnswerInput = styled.input`
-    width: 100%;
-    padding: 2.1rem 2rem;
-    border-radius: 1.25rem;
-    border: none;
-    &:focus {
-        outline: none;
-    }
-    background-color: #FFF7D0;
-    ${font.Body};   
-`
 
 const AnswerInputArea = styled.div`
     width: 100%;

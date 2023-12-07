@@ -6,7 +6,7 @@ import Text from "ui/components/Text";
 
 interface SearchBox {
   placeholder: string;
-  buttonText: string;
+  buttonText?: string;
 }
 
 function SearchBox({ placeholder, buttonText }: SearchBox): JSX.Element {
@@ -16,9 +16,10 @@ function SearchBox({ placeholder, buttonText }: SearchBox): JSX.Element {
         <SearchIcon />
         <Input placeholder={placeholder} />
       </SearchBar>
+      {buttonText && 
       <Button>
         <Text $fontType={"Button"}>{buttonText}</Text>
-      </Button>
+      </Button>}
     </Box>
   );
 }

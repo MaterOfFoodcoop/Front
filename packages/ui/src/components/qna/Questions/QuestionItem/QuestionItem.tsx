@@ -3,19 +3,39 @@
 import useBooleanState from '../../../../../../../apps/client/src/hooks/useBooleanState';
 import AnsweringBox from '../../../../../../../apps/admin/src/components/qna/AnsweringBox/AnsweringBox';
 import { QNA_ANSWER_DATA } from 'ui/../../mocks/qna/answer';
-import { Question } from 'ui/../../types/question/question';
+import { Question, Answer } from 'ui/../../types/question/question';
 import styled from 'styled-components';
 import Text from 'ui/components/Text';
 import { color } from 'ui/styles';
+import axios from 'axios';
+import { useState } from 'react';
 
 function QuestionItem ({id, title, createdDate, isAnswered, content}: Question ): JSX.Element {
     const { value: isOpen, toggle: toggleOpen } = useBooleanState();
+    const [localAnswer, setLocalAnswer] = useState<Answer | null>(null);
 
-    function getAnswerByQuestionId(id: number) {
+    const getAnswerByQuestionId = (id: number) => {
       return QNA_ANSWER_DATA.find(answer => answer.id === id);
     }
     
-    const answer = getAnswerByQuestionId(id);
+    const answer = localAnswer || getAnswerByQuestionId(id);
+
+    const handleAnswerSubmit = async (answerContent: string) => {
+      const newAnswer: Answer = {
+        id,
+        content: answerContent,
+      };
+
+      try {
+        const response = await axios.post('/answers', newAnswer);
+    
+        if (response.status === 200) {
+          setLocalAnswer(newAnswer);
+        }
+      } catch (error) {
+        console.error('답변 등록에 실패했습니다.', error);
+      }
+    };
   
     return (
       <Container>
@@ -26,23 +46,20 @@ function QuestionItem ({id, title, createdDate, isAnswered, content}: Question )
           <Preview>
             <Text $fontType='SubTitle1' style={{whiteSpace: 'normal'}}>{title}</Text>
             <Text $fontType='SubTitle2' color={`${color.gray700}`}>{createdDate}</Text>
-            {isAnswered && <Text $fontType='SubTitle2' color='#AFEB80'>답변됨</Text>}
+            {isAnswered ? <Text $fontType='SubTitle2' color='#AFEB80'>답변됨</Text> : null}
           </Preview>
 
-          {isOpen && (
-            <Text $fontType='Body'>{content}</Text>
-          )}
+          {isOpen ? <Text $fontType='Body'>{content}</Text> : null}
           </Contents>
         </QuestionContainer>
 
-        {isOpen && answer && 
-          <AnswerContainer>
+        {isOpen && answer ? <AnswerContainer>
             <Text $fontType='Header3'><Icon>A.</Icon></Text>
             <Text $fontType='Body'>{answer.content}</Text>
-         </AnswerContainer>
+         </AnswerContainer> : null
         }
 
-        {isOpen && !answer && !isAnswered && <AnsweringBox />}
+        {isOpen && !answer && !isAnswered ? <AnsweringBox onAnswerSubmit={handleAnswerSubmit}/> : null}
       </Container>
     );
   }
