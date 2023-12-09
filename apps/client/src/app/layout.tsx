@@ -1,8 +1,6 @@
-import { ThemeProvider } from "@mui/material";
 import Provider from "ui/components/Provider";
 import StyledComponentsRegistry from "client/lib/registry";
 import type { Metadata } from "next";
-import { theme } from "ui/styles";
 
 export const metadata: Metadata = {
   title: "금방하지",

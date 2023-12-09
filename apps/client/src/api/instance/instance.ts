@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const instance = axios.create({
-  baseURL: "https://some-domain.com/api/",
-  timeout: 1000,
-  headers: { "Content-Type": "application/json" },
+export const instance = axios.create({
+  baseURL: `https://port-0-back-enji12clpxn1okl.sel4.cloudtype.app`,
+  // baseURL: `${process.env.API_URL}`,
+  timeout: 10000,
 });
 
 // 요청 인터셉터 추가하기
