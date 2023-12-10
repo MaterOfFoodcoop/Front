@@ -8,6 +8,7 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     label?: string;
     errorMessage?: string;
     isError?: boolean;
+    width?: CSSProperties['width'];
     height?: CSSProperties['height'];
 }
   
@@ -18,10 +19,11 @@ function TextArea({
   name,
   value,
   isError = false,
+  width,
   height
 }: TextAreaProps): JSX.Element{
   return (
-    <div>
+    <div style={{width}}>
       {label ? <Label><Text $fontType='SubTitle2' tag='span'>{label} {isError ? "*": null} </Text></Label> : null}
       {isError ? <Text $fontType='SubTitle3' color='#EB8080' style={{fontWeight: '700'}} tag='span'>{errorMessage}</Text> : null}
       <div>
@@ -29,7 +31,7 @@ function TextArea({
           $isError={isError}
           name={name}
           placeholder={placeholder}
-          style={{height}}
+          style={{width, height}}
           value={value}
         />
       </div>

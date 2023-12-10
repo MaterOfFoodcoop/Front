@@ -39,9 +39,9 @@ function ManageProduct(): JSX.Element {
                         description="와라! 매점에 있는 상품을 관리할 수 있어요."
                     />
                     <ButtonBox>
-                        <Button>
-                            <Link href="addProduct">+ 상품 추가하기</Link>
-                        </Button> 
+                    <Link href="/addProduct">
+                        <Button>+ 상품 추가하기</Button>
+                    </Link>
                     </ButtonBox>
                     {data.map( ({id, name, price, like, isInStock, imgSrc}) => (
                         <div key={id}>
