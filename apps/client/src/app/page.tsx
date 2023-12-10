@@ -6,7 +6,7 @@ import SummaryContent from "ui/components/SummaryContent/SummaryContent";
 import SearchBox from "ui/components/SearchBox/SearchBox";
 import AppLayout from "client/layouts/AppLayout";
 import styled from "styled-components";
-import { getProducts } from "client/api/products/api";
+import { getProducts } from "apis/products/api";
 import { useQuery } from "react-query";
 
 export default function Home() {

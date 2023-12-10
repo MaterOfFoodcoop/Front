@@ -20,7 +20,7 @@
     ],
     "paths": {
       "client/*": ["./src/*"],
-      "api/*": ["../../packages/api/*"],
+      "apis/*": ["../../packages/api/*"],
       "ui/*": ["../../packages/ui/src/*"],
       "styles/*": ["../../packages/ui/src/styles/*"],
       "icon/*": ["../../packages/ui/src/icon/*"],
