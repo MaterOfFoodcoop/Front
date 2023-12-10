@@ -50,7 +50,7 @@ function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
 
               <InfoForm>
                 <InfoInputBox>
-                  <InfoInputLabel htmlFor="userid">아이디</InfoInputLabel>
+                  <InfoInputLabel htmlFor="useremail">이메일</InfoInputLabel>
                   <InfoInput
                     type="text"
                     id="email"

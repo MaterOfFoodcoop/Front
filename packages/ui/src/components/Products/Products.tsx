@@ -13,19 +13,19 @@ interface ContentProps {
 }
 
 function Products({ productsData }: ContentProps): JSX.Element {
-  const dummydata = productsData || [];
+  const gottenData = productsData || [];
   const ITEMS_PER_PAGE = 8;
-  const LAST_PAGE = Math.ceil(dummydata.length / ITEMS_PER_PAGE);
+  const LAST_PAGE = Math.ceil(gottenData.length / ITEMS_PER_PAGE);
 
   const [page, setPage] = useState(1);
-  const [data, setData] = useState(dummydata.slice(0, ITEMS_PER_PAGE));
+  const [data, setData] = useState(gottenData.slice(0, ITEMS_PER_PAGE));
 
   const handlePage = (event: ChangeEvent<unknown>, value: number) => {
     setPage(value);
 
     const start = ITEMS_PER_PAGE * (value - 1);
     const end = value === LAST_PAGE ? undefined : ITEMS_PER_PAGE * value;
-    setData(dummydata.slice(start, end));
+    setData(gottenData.slice(start, end));
   };
 
   return (

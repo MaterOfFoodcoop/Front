@@ -18,6 +18,7 @@ export default function Home() {
   return (
     <AppLayout>
       <Container>
+        <>
         <SummaryContent
           subject="와라! 매점"
           description="와라! 매점을 통해 매점 이용을 편리하게!"
@@ -28,6 +29,7 @@ export default function Home() {
         />
         <FilterTabs items={"상품"} />
         <Products productsData={products} />
+        </>
       </Container>
     </AppLayout>
   );

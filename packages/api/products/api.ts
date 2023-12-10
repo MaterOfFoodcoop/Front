@@ -5,3 +5,8 @@ export const getProducts = async () => {
   console.log(data);
   return data;
 };
+
+export const getProductById = async (id: number) => {
+  const data = await instance.get(`/products/${id}`);
+  return data.data;
+}

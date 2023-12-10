@@ -15,16 +15,16 @@ interface CommentsProps {
 }
 
 function Comments ({id}: CommentsProps): JSX.Element {
-    const dummydata = DETAIL_COMMENT_DATA;
-    const [commentData, setCommentData] = useState<Comment[]>(dummydata);
+    // const dummydata = DETAIL_COMMENT_DATA;
+    // const [commentData, setCommentData] = useState<Comment[]>(dummydata);
 
     return (
       <Container>
         <CommentsBox>
-        {commentData.map((data, idx) => (
+        {/* {commentData.map((data, idx) => (
           <CommentComponent key={idx} {...data} />
           ))
-        }
+        } */}
         </CommentsBox>
         <WriteBox>
           <Input />

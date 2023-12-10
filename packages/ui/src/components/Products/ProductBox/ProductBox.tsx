@@ -77,8 +77,8 @@ const ImgBox = styled.div`
   margin: auto 0;
 `;
 const Img = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 10.3rem;
+  height: 10.3rem;
   object-fit: cover;
 `;
 

@@ -7,16 +7,27 @@ import { useState } from "react";
 import styled from "styled-components";
 import Text from "ui/components/Text";
 import { color } from "ui/styles";
+import { getProductById } from "apis/products/api";
+import { useQuery } from "react-query";
 
 function ProductBox({ id }: { id: number }): JSX.Element {
-  const dummydata = DETAIL_PRODUCT_DATA;
-  const [productData, setProductData] = useState<DetailProduct>(dummydata);
+  const { data: product, isLoading, error } = useQuery(
+    [`product/${id}`, id],
+    () => getProductById(id),
+  );
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
   return (
     <Container>
       <TopBox>
         <ImgBox>
-          <Img src={productData.imgSrc} alt="" />
+          <Img src={product.imgUrl} alt="" />
         </ImgBox>
         <TextContents>
           <Row>
@@ -29,31 +40,33 @@ function ProductBox({ id }: { id: number }): JSX.Element {
                 fontWeight: "800",
               }}
             >
-              {productData.name}
+              {product.productName}
             </Text>
-            <Badge $isInStock={productData.isInStock}>
+            <Badge $isInStock={product.isInStock}>
               <Text $fontType="SubTitle2">
                 {" "}
-                재고 {productData.isInStock ? "있" : "없"}음
+                재고 {product.isInStock ? "있" : "없"}음
               </Text>
             </Badge>
           </Row>
           <Row>
             <Text $fontType="Header3">
-              <MoneyIcon>₩</MoneyIcon> {productData.price}
+              <MoneyIcon>₩</MoneyIcon> {product.productPrice}
             </Text>
             <InnerRow style={{ cursor: "pointer" }}>
               <LikeIcon width={"23px"} height={"21px"} />
               <Text $fontType="Header3" style={{ color: `${color.gray100}` }}>
-                {productData.like}
+                {product.like}
               </Text>
             </InnerRow>
           </Row>
         </TextContents>
       </TopBox>
-      <BottomBox>
-        <Text $fontType="Body">{productData.description}</Text>
-      </BottomBox>
+      {product.productDetail !== "" && product.productDetail !== "\n" && (
+        <BottomBox>
+          <Text $fontType="Body">{product.productDetail}</Text>
+        </BottomBox>
+      )}
     </Container>
   );
 }
@@ -97,8 +110,8 @@ const ImgBox = styled.div`
   margin: auto 0;
 `;
 const Img = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 10.3rem;
+  height: 10.3rem;
   object-fit: cover;
   border-radius: 20px;
 `;
