@@ -9,6 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     errorMessage?: string;
     width?: CSSProperties['width'];
+    value?: string;
     isError?: boolean;
 }
   
@@ -20,6 +21,7 @@ function Input({
   value,
   width,
   isError = false,
+  onChange
 }: InputProps): JSX.Element{
   return (
     <div style={{width}}>
@@ -29,6 +31,7 @@ function Input({
         <StyledInput
           $isError={isError}
           name={name}
+          onChange={onChange}
           placeholder={placeholder}
           style={{width}}
           value={value}

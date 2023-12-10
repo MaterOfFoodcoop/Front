@@ -1,7 +1,7 @@
 'use client'
 
-import Comments from "ui/components/detail/Comments/Comments";
-import ProductBox from "ui/components/detail/Product/Product";
+import Comments from "ui/src/components/detail/Comments/Comments";
+import ProductBox from "ui/src/components/detail/ProductBox/Product";
 import AppLayout from "client/layouts/AppLayout"
 import { usePathname } from "next/navigation"
 import styled from "styled-components"
@@ -19,6 +19,7 @@ export default function ProductDetail() {
     </AppLayout>
   )
 }
+
 
 const Container = styled.div`
   width: calc(100% - 12.5rem);

@@ -1,49 +1,47 @@
 'use client'
 
 import useBooleanState from '../../../../../../../apps/client/src/hooks/useBooleanState';
-import AnsweringBox from '../../../../../../../apps/admin/src/components/qna/AnsweringBox/AnsweringBox';
+import AnsweringBox from 'ui/components/qna/Questions/AnsweringBox/AnsweringBox';
 import { QNA_ANSWER_DATA } from 'ui/../../mocks/qna/answer';
 import { Question } from 'ui/../../types/question/question';
 import styled from 'styled-components';
 import Text from 'ui/components/Text';
 import { color } from 'ui/styles';
 
-function QuestionItem ({id, title, createdDate, isAnswered, content}: Question ): JSX.Element {
-    const { value: isOpen, toggle: toggleOpen } = useBooleanState();
+function QuestionItem ({id, title, createdDate, Answer, content}: Question ): JSX.Element {
+  const { value: isOpen, toggle: toggleOpen } = useBooleanState();
 
-    function getAnswerByQuestionId(id: number) {
-      return QNA_ANSWER_DATA.find(answer => answer.id === id);
-    }
-    
-    const answer = getAnswerByQuestionId(id);
-  
-    return (
-      <Container>
-        <QuestionContainer onClick={toggleOpen} $isOpen={isOpen}>
-          <Text $fontType='Header3'><Icon>Q.</Icon></Text>
+  const dateString = createdDate;  const date = new Date(dateString);
+  const year = date.getFullYear();  const month = date.getMonth() + 1;  const day = date.getDate();
+  const formattedDate = `${year}. ${month}. ${day}.`; 
 
-          <Contents>
-          <Preview>
-            <Text $fontType='SubTitle1' style={{whiteSpace: 'normal'}}>{title}</Text>
-            <Text $fontType='SubTitle2' color={`${color.gray700}`}>{createdDate}</Text>
-            {isAnswered && <Text $fontType='SubTitle2' color='#AFEB80'>답변됨</Text>}
-          </Preview>
+  return (
+    <Container>
+      <QuestionContainer onClick={toggleOpen} $isOpen={isOpen}>
+        <Text $fontType='Header3'><Icon>Q.</Icon></Text>
 
-          {isOpen && (
-            <Text $fontType='Body'>{content}</Text>
-          )}
-          </Contents>
-        </QuestionContainer>
+        <Contents>
+        <Preview>
+          <Text $fontType='SubTitle1' style={{whiteSpace: 'normal'}}>{title}</Text>
+          <Text $fontType='SubTitle2' color={`${color.gray700}`}>{formattedDate}</Text>
+          {Answer && <Text $fontType='SubTitle2' color='#AFEB80'>답변됨</Text>}
+        </Preview>
 
-        {isOpen && answer && 
-          <AnswerContainer>
-            <Text $fontType='Header3'><Icon>A.</Icon></Text>
-            <Text $fontType='Body'>{answer.content}</Text>
-         </AnswerContainer>
-        }
+        {isOpen && (
+          <Text $fontType='Body'>{content}</Text>
+        )}
+        </Contents>
+      </QuestionContainer>
 
-        {isOpen && !answer && !isAnswered && <AnsweringBox />}
-      </Container>
+      {isOpen && Answer && 
+        <AnswerContainer>
+          <Text $fontType='Header3'><Icon>A.</Icon></Text>
+          <Text $fontType='Body'>{answer.content}</Text>
+        </AnswerContainer>
+      }
+
+      {isOpen && !Answer && <AnsweringBox id={id} />}
+    </Container>
     );
   }
   

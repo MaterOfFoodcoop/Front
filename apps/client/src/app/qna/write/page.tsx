@@ -1,13 +1,30 @@
 "use client";
 
+import { useState } from 'react';
 import AppLayout from "client/layouts/AppLayout";
 import styled from "styled-components";
 import Input from "ui/components/Input";
 import TextArea from "ui/components/TextArea";
 import WriteButton from "ui/components/Button/WriteButton";
 import SummaryContent from "ui/components/SummaryContent/SummaryContent";
+import { useRouter } from 'next/router';
+import { postQuestion } from 'apis/qna/question/api';
 
 export default function QnaWrite() {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  // const router = useRouter(); 
+
+  const handleSubmit = async () => {
+    try {
+      await postQuestion(title, content);
+      // router.push('/qna');
+    } catch (error) {
+      alert('질문 작성을 실패했습니다.');
+      console.error(error);
+    }
+  };
+
   return (
     <AppLayout>
       <Container>
@@ -18,18 +35,23 @@ export default function QnaWrite() {
         <Col>
           <Input
             label={"제목"}
+            value={title}
+            onChange={e => setTitle(e.target.value)}
             placeholder="Ex. 매점 동아리는 어떻게 운영되고 있나요?"
             errorMessage="제목을 입력해 주세요."
+            width={"100%"}
           />
           <TextArea
             height={"12.25rem"}
             label={"글 내용"}
+            value={content}
+            onChange={e => setContent(e.target.value)}
             placeholder="Ex. 점심, 저녁 시간에 매점 동아리 학생들이 계산하는 업무를 하고 있는데, 어떤 형식으로 업무가 진행되고 있는지 궁금합니다."
             errorMessage="내용을 입력해 주세요."
           />
           <Row>
             <WriteButton $borderColor="gray">취소</WriteButton>
-            <WriteButton $borderColor="yellow">등록</WriteButton>
+            <WriteButton $borderColor="yellow" onClick={handleSubmit}>등록</WriteButton>
           </Row>
         </Col>
       </Container>
@@ -47,6 +69,7 @@ const Container = styled.div`
 `;
 
 const Col = styled.div`
+  margin-top: 6.5rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
