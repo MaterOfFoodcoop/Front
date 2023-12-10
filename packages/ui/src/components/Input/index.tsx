@@ -1,5 +1,5 @@
 'use client'
-import type { InputHTMLAttributes } from 'react';
+import type { CSSProperties, InputHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 import { color, font } from 'ui/styles';
 import Text from '../Text';
@@ -8,6 +8,7 @@ import Text from '../Text';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     errorMessage?: string;
+    width?: CSSProperties['width'];
     isError?: boolean;
 }
   
@@ -17,10 +18,11 @@ function Input({
   errorMessage,
   name,
   value,
+  width,
   isError = false,
 }: InputProps): JSX.Element{
   return (
-    <div>
+    <div style={{width}}>
       {label ? <Label><Text $fontType='SubTitle2' tag='span'>{label} {isError ? "*": null} </Text></Label> : null}
       {isError ? <Text $fontType='SubTitle3' color='#EB8080' style={{fontWeight: '700'}} tag='span'>{errorMessage}</Text> : null}
       <div>
@@ -28,6 +30,7 @@ function Input({
           $isError={isError}
           name={name}
           placeholder={placeholder}
+          style={{width}}
           value={value}
         />
       </div>
@@ -37,12 +40,12 @@ function Input({
 
 export default Input;
 
-const StyledInput = styled.input<{ $isError: boolean }>`
+const StyledInput = styled.input<{ $isError: boolean, width: string }>`
     margin-top: 1rem;
     ${font.SubTitle1}
     font-size: 1.25rem;
     color: ${color.gray800};
-    width: 100%;
+    width: '100%';    
     padding: 21px 27px;
     background-color: white;
     border: 3px solid ${color.gray50};
@@ -58,8 +61,7 @@ const StyledInput = styled.input<{ $isError: boolean }>`
         transition: 0.3s ease;
     }
 
-    ${(props) =>
-    props.$isError &&
+    ${(props) => props.$isError &&
     css`
         box-shadow: 0px 0px 4px 0px #EB8080BF;
         &:focus {
