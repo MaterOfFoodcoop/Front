@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Header from 'ui/components/Header/Header';
-import type { ReactNode } from 'react';
-import { styled } from 'styled-components';
+import Header from "client/components/Header/Header";
+import type { ReactNode } from "react";
+import { styled } from "styled-components";
 
 interface Props {
   children: ReactNode;

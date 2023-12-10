@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 interface AdminLoginProps {
   isOpen: boolean;
-  onClose: React.MouseEventHandler<HTMLButtonElement>;
+  onClose: React.ChangeEvent<any>;
 }
 
 function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
@@ -22,11 +22,11 @@ function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
   const handleLoginUserData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLoginUserData({ ...loginUserData, [name]: value });
-    console.log(name, value);
   };
-  const loginClickHandler = () => {
+  const loginClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     loginMutate.mutate();
-    router.push("/");
+    onClose(e);
   };
 
   return (
@@ -71,7 +71,7 @@ function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
                 <ButtonArea>
                   <WriteButton
                     style={{ backgroundColor: "#f9f9f9" }}
-                    onClick={loginClickHandler}
+                    onClick={(e) => loginClickHandler(e)}
                   >
                     로그인
                   </WriteButton>
@@ -159,7 +159,7 @@ const Subtitle = styled.p`
   color: black;
 `;
 
-const InfoForm = styled.form`
+const InfoForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 41px;
