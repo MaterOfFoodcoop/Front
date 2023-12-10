@@ -20,7 +20,8 @@ function TextArea({
   value,
   isError = false,
   width,
-  height
+  height,
+  onChange
 }: TextAreaProps): JSX.Element{
   return (
     <div style={{width}}>
@@ -33,6 +34,7 @@ function TextArea({
           placeholder={placeholder}
           style={{width, height}}
           value={value}
+          onChange={onChange}
         />
       </div>
     </div>

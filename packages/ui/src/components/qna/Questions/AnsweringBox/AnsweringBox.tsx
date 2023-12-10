@@ -2,14 +2,32 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import { color, font } from "ui/styles";
 import Text from 'ui/components/Text';
+import { useMutation } from 'react-query';
+import { postAnswer } from 'apis/qna/answer/api';
+import axios from 'axios';
 
-function AnsweringBox (): JSX.Element{
+function AnsweringBox (id: number): JSX.Element{
     const [answer, setAnswer] = useState("");
+
+    const mutation = useMutation((data) => postAnswer(data));
 
     const handleSubmit = (e) => {
       e.preventDefault();
+      mutation.mutate(answer, id);
       setAnswer("");
     };
+    
+    if (mutation.isLoading) {
+        console.log("Loading...");
+    }
+
+    if (mutation.isError) {
+        console.error("Error:", mutation.error);
+    }
+
+    if (mutation.isSuccess) {
+        console.log("Success!", mutation.data);
+    }
 
     return(
         <AnswerBox onSubmit={handleSubmit}>
@@ -24,6 +42,8 @@ function AnsweringBox (): JSX.Element{
 
 
 export default AnsweringBox;
+
+
 
 const AnswerBox = styled.form`
     width: 100%;

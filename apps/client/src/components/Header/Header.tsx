@@ -37,7 +37,7 @@ function Header({}: HeaderProps): JSX.Element {
           Q&A
         </Link>
         {/* {isLoggedIn && <Link href='/manage-product' $active={pathname === '/manage-product'}>상품 관리</Link>} */}
-        <Link href="/manage-product" $active={pathname === "/manage-product"}>
+        <Link href="/manageProduct" $active={pathname === "/manageProduct"}>
           상품 관리
         </Link>
         <LoginIcon onClick={openModal}>

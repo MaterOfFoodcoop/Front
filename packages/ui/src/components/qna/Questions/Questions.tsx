@@ -1,10 +1,11 @@
 'use client'
 
 import styled from 'styled-components';
-import { QNA_QUESTION_DATA } from 'ui/../../mocks/qna/qna';
 import { Pagination } from '@mui/material';
 import { ChangeEvent, useEffect, useState } from 'react';
 import QuestionItem from './QuestionItem/QuestionItem';
+import { getQnA } from 'apis/qna/api';
+import { useQuery } from "react-query";
 
 interface Props {
   subject?: string;
@@ -12,20 +13,25 @@ interface Props {
 }
 
 function Questions ({}: Props): JSX.Element {
-  const dummydata = QNA_QUESTION_DATA;
+  const { data: QnAs, isLoading, error } = useQuery(
+    'qna',
+    () => getQnA(),
+  );
+
+  const QnADatas = QnAs || [];
   const ITEMS_PER_PAGE = 4;
-  const LAST_PAGE = Math.ceil(dummydata.length / ITEMS_PER_PAGE);
-  
+  const LAST_PAGE = Math.ceil(QnADatas.length / ITEMS_PER_PAGE);
+
   const [page, setPage] = useState(1);
-  const [data, setData] = useState(dummydata.slice(0, ITEMS_PER_PAGE));
+  const [data, setData] = useState(QnADatas.slice(0, ITEMS_PER_PAGE));
 
   useEffect(() => {
     if(page === LAST_PAGE) {
-      setData(dummydata.slice(ITEMS_PER_PAGE * (page - 1)));
+      setData(QnADatas.slice(ITEMS_PER_PAGE * (page - 1)));
     } else {
-      setData(dummydata.slice(ITEMS_PER_PAGE * (page - 1), ITEMS_PER_PAGE * page));
+      setData(QnADatas.slice(ITEMS_PER_PAGE * (page - 1), ITEMS_PER_PAGE * page));
     }  
-  }, [LAST_PAGE, dummydata, page]);
+  }, [LAST_PAGE, QnAs, page]);
 
   const handlePage = (event: ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -34,8 +40,14 @@ function Questions ({}: Props): JSX.Element {
   return (
     <Container>
       <ProductContainer>
-        {data.map((data, idx) => (  
-            <QuestionItem key={idx} id={data.id} title={data.title} createdDate={data.createdDate} isAnswered={data.isAnswered} content={data.content}/>
+        {data.map(({
+          id,
+          title,
+          content,
+          createdAt,
+          answer
+        }) => (  
+            <QuestionItem key={id} id={id} title={title} createdDate={createdAt} Answer={answer} content={content}/>
           )
         )}
       </ProductContainer>

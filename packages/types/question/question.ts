@@ -2,7 +2,7 @@ export interface Question{
     id: number;
     title: string;
     createdDate: string;
-    isAnswered: boolean;
+    Answer: string;
     content: string;
 }
 
