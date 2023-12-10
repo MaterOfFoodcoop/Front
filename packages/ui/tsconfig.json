@@ -12,7 +12,8 @@
     "paths": {
       "ui/*": ["packages/ui/src/*"],
       "client/*": ["apps/client/src/*"],
-      "types/*": ["packages/ui/src/*"]
+      "types/*": ["packages/ui/src/*"],
+      "apis/*": ["packages/api/*"]
     }
   },
   "exclude": ["dist", "build", "node_modules"]
