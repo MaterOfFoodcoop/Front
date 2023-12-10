@@ -3,7 +3,7 @@
 import { MAIN_PRODUCT_DATA } from 'ui/../../mocks/main/main';
 import styled from "styled-components"
 import Button from "ui/components/Button/SearchButton"
-import ProductItem from 'admin/components/manageProduct/ProductItem/ProductItem';
+import ProductItem from '../../manageProduct/ProductItem/ProductItem'
 import Link from 'next/link';
 import { useState } from 'react';
 import FilterTab from 'ui/components/FilterTabs/FilterTab/FilterTab';

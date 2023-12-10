@@ -3,11 +3,10 @@
 import { ChangeEvent, useState, useEffect } from 'react';
 import { MAIN_PRODUCT_DATA } from 'ui/../../mocks/main/main';
 import SummaryContent from "ui/components/SummaryContent/SummaryContent"
-import AppLayout from "admin/layouts/AppLayout"
-import { UserProvider } from "admin/context/UserContext"
+import AppLayout from "../../layouts/AppLayout"
 import styled from "styled-components"
 import Button from "ui/components/Button/SearchButton"
-import ProductItem from 'admin/components/manageProduct/ProductItem/ProductItem';
+import ProductItem from '../../components/manageProduct/ProductItem/ProductItem';
 import Link from 'next/link';
 
 function ManageProduct(): JSX.Element {
@@ -31,27 +30,25 @@ function ManageProduct(): JSX.Element {
     };    
 
     return(
-        <UserProvider>
-            <AppLayout>
-                <Container>
-                    <SummaryContent 
-                        subject="상품 관리" 
-                        description="와라! 매점에 있는 상품을 관리할 수 있어요."
-                    />
-                    <ButtonBox>
-                    <Link href="/addProduct">
-                        <Button>+ 상품 추가하기</Button>
-                    </Link>
-                    </ButtonBox>
-                    {data.map( ({id, name, price, like, isInStock, imgSrc}) => (
-                        <div key={id}>
-                            <ProductItem name={name} price={price} like={like} isInStock={isInStock} id={0} imgSrc={imgSrc}/>
-                        </div>
-                        )
-                    )}
-                </Container>
-            </AppLayout>
-        </UserProvider>
+        <AppLayout>
+            <Container>
+                <SummaryContent 
+                    subject="상품 관리" 
+                    description="와라! 매점에 있는 상품을 관리할 수 있어요."
+                />
+                <ButtonBox>
+                <Link href="/addProduct">
+                    <Button>+ 상품 추가하기</Button>
+                </Link>
+                </ButtonBox>
+                {data.map( ({id, name, price, like, isInStock, imgSrc}) => (
+                    <div key={id}>
+                        <ProductItem name={name} price={price} like={like} isInStock={isInStock} id={0} imgSrc={imgSrc}/>
+                    </div>
+                    )
+                )}
+            </Container>
+        </AppLayout>
     )
 }
 

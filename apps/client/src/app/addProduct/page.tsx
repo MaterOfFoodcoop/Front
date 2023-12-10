@@ -2,16 +2,14 @@
 
 import { useState } from 'react';
 import SummaryContent from "ui/components/SummaryContent/SummaryContent"
-import AppLayout from "admin/layouts/AppLayout"
+import AppLayout from "../../layouts/AppLayout";
 import { Text, Input, TextArea } from "ui/components"
 import { font, color } from "ui/styles"
 import styled from "styled-components"
 import FilterTab from "ui/components/FilterTabs/FilterTab/FilterTab"
-import StockStateChange from "admin/components/addProduct/StockStateChange/StockStateChange"
-import ProductFilterTabs from "admin/components/addProduct/ProductFilterTabs/ProductFilterTabs"
+import StockStateChange from "../../components/addProduct/StockStateChange/StockStateChange"
+import ProductFilterTabs from "../../components/addProduct/ProductFilterTabs/ProductFilterTabs"
 import { PlusIcon } from "ui/icon"
-
-
 
 export default function addProduct(){
     const [selectedImage, setSelectedImage] = useState(null);
