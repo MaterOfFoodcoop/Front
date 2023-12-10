@@ -24,8 +24,15 @@
       "ui/*": ["../../packages/ui/src/*"],
       "styles/*": ["../../packages/ui/src/styles/*"],
       "icon/*": ["../../packages/ui/src/icon/*"],
+      "types/*": ["../../packages/types/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../../packages/eslint-config-custom/icon/LikeIcon.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../packages/eslint-config-custom/icon/LikeIcon.tsx"
+  ],
   "exclude": ["node_modules"]
 }
