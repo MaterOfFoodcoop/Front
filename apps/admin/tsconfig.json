@@ -22,6 +22,7 @@
       "admin/*": ["./src/*"],
       "api/*": ["../../packages/api/*"],
       "ui/*": ["../../packages/ui/src/*"],
+      "mocks/*": ["../../packages/mocks/*"],
       "styles/*": ["../../packages/ui/src/styles/*"]
     }
   },

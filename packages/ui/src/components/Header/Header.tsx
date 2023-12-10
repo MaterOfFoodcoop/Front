@@ -33,7 +33,7 @@ function Header ({}: HeaderProps): JSX.Element {
           <Link href='/recommand' $active={pathname === '/recommand'}>가격대별 추천</Link>
           <Link href='/qna' $active={pathname === '/qna'}>Q&A</Link>
           {/* {isLoggedIn && <Link href='/manage-product' $active={pathname === '/manage-product'}>상품 관리</Link>} */}
-          <Link href='/manage-product' $active={pathname === '/manage-product'}>상품 관리</Link>
+          <Link href='/manageProduct' $active={pathname === '/manage-product'}>상품 관리</Link>
           <LoginIcon onClick={openModal}>
             {/* {isLoggedIn ? 
               <Text>로그아웃</Text> : <PersonIcon /> 
