@@ -6,7 +6,6 @@ import { Question } from 'ui/../../types/question/question';
 import styled from 'styled-components';
 import Text from 'ui/components/Text';
 import { color } from 'ui/styles';
-
 function QuestionItem ({id, title, createdDate, Answer, content}: Question ): JSX.Element {
   const { value: isOpen, toggle: toggleOpen } = useBooleanState();
 
@@ -32,7 +31,7 @@ function QuestionItem ({id, title, createdDate, Answer, content}: Question ): JS
         </Contents>
       </QuestionContainer>
 
-      {isOpen && Answer && 
+      {isOpen && Answer &&
         <AnswerContainer>
           <Text $fontType='Header3'><Icon>A.</Icon></Text>
           <Text $fontType='Body'>{Answer}</Text>

@@ -6,6 +6,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import QuestionItem from './QuestionItem/QuestionItem';
 import { getQnA } from 'apis/qna/api';
 import { useQuery } from "react-query";
+import { UserProvider } from 'client/context/UserContext';
 
 interface Props {
   subject?: string;
@@ -38,25 +39,27 @@ function Questions ({}: Props): JSX.Element {
   };
 
   return (
-    <Container>
-      <ProductContainer>
-        {data.map(({
-          id,
-          title,
-          content,
-          createdAt,
-          answer
-        }) => (  
-            <QuestionItem key={id} id={id} title={title} createdDate={createdAt} Answer={answer} content={content}/>
-          )
-        )}
-      </ProductContainer>
-      
-      <PaginationContainer>
-        <Pagination count={LAST_PAGE} defaultPage={1} boundaryCount={2} 
-          color="standard" size="large" onChange={handlePage}/>
-      </PaginationContainer>
-    </Container>
+    <UserProvider>
+      <Container>
+        <ProductContainer>
+          {data.map(({
+            id,
+            title,
+            content,
+            createdAt,
+            answer
+          }) => (  
+              <QuestionItem key={id} id={id} title={title} createdDate={createdAt} Answer={answer} content={content}/>
+            )
+          )}
+        </ProductContainer>
+        
+        <PaginationContainer>
+          <Pagination count={LAST_PAGE} defaultPage={1} boundaryCount={2} 
+            color="standard" size="large" onChange={handlePage}/>
+        </PaginationContainer>
+      </Container>
+    </UserProvider>
   );
 }
   
