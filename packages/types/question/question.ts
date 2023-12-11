@@ -1,13 +1,12 @@
-export interface Question{
-    id: number;
-    title: string;
-    createdDate: string;
-    Answer: string;
-    content: string;
+export interface Answer {
+  id: string;
+  content: string;
 }
 
-export interface Answer{
-    id: number;
-    content: string;
+export interface Question {
+  id: string;
+  title: string;
+  createdDate: string;
+  Answer: string;
+  content: string;
 }
-
