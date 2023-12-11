@@ -13,6 +13,36 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     isError?: boolean;
 }
   
+const StyledInput = styled.input<{ $isError: boolean }>`
+    margin-top: 1rem;
+    ${font.SubTitle1}
+    font-size: 1.25rem;
+    color: ${color.gray800};
+    width: '100%';    
+    padding: 21px 27px;
+    background-color: white;
+    border: 3px solid ${color.gray50};
+    border-radius: 20px;
+    outline: none;
+
+    &::placeholder {
+        color: ${color.gray400};
+    }
+
+    &:focus {
+        border-color: ${color.gray400};  
+        transition: 0.3s ease;
+    }
+
+    ${(props) => props.$isError &&
+    css`
+        box-shadow: 0px 0px 4px 0px #EB8080BF;
+        &:focus {
+        }
+    `}
+`;
+
+
 function Input({
   label,
   placeholder,
@@ -42,35 +72,6 @@ function Input({
 }
 
 export default Input;
-
-const StyledInput = styled.input<{ $isError: boolean, width: string }>`
-    margin-top: 1rem;
-    ${font.SubTitle1}
-    font-size: 1.25rem;
-    color: ${color.gray800};
-    width: '100%';    
-    padding: 21px 27px;
-    background-color: white;
-    border: 3px solid ${color.gray50};
-    border-radius: 20px;
-    outline: none;
-
-    &::placeholder {
-        color: ${color.gray400};
-    }
-
-    &:focus {
-        border-color: ${color.gray400};  
-        transition: 0.3s ease;
-    }
-
-    ${(props) => props.$isError &&
-    css`
-        box-shadow: 0px 0px 4px 0px #EB8080BF;
-        &:focus {
-        }
-    `}
-`;
 
 const Label = styled.span`
     margin-right: 8px;

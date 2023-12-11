@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 interface AdminLoginProps {
   isOpen: boolean;
-  onClose: React.ChangeEvent<any>;
+  onClose: () => void;
 }
 
 function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
@@ -26,7 +26,7 @@ function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
   const loginClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     loginMutate.mutate();
-    onClose(e);
+    onClose();
   };
 
   return (
@@ -39,7 +39,7 @@ function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
             </IconArea>
 
             <Content>
-              <CloseBtn onClick={onClose}>
+              <CloseBtn onClick={() => onClose}>
                 <CloseIcon />
               </CloseBtn>
 

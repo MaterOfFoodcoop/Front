@@ -6,14 +6,14 @@ import { useMutation } from 'react-query';
 import { postAnswer } from 'apis/qna/answer/api';
 import axios from 'axios';
 
-function AnsweringBox (id: number): JSX.Element{
+function AnsweringBox (id): JSX.Element{
     const [answer, setAnswer] = useState("");
 
-    const mutation = useMutation((data) => postAnswer(data));
+    const mutation = useMutation((data) => postAnswer({answer, id}));
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      mutation.mutate(answer, id);
+      mutation.mutate(e, id);
       setAnswer("");
     };
     
@@ -62,21 +62,6 @@ const Icon = styled.span`
   color: ${color.yellow};
   font-size: 1.75rem;
 `;
-
-// const AnswerInput = styled.textarea`
-//     width: 100%;
-//     height: fit-content;
-//     padding: 2.1rem 2rem;
-//     border-radius: 1.25rem;
-//     border: none;
-//     &:focus {
-//         outline: none;
-//     }
-//     background-color: #FFF7D0;
-//     ${font.Body};   
-//     resize: none; 
-//     overflow: hidden;
-// `
 
 const AnswerInput = styled.input`
     width: 100%;

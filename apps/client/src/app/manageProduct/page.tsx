@@ -41,9 +41,9 @@ function ManageProduct(): JSX.Element {
                     <Button>+ 상품 추가하기</Button>
                 </Link>
                 </ButtonBox>
-                {data.map( ({id, name, price, like, isInStock, imgSrc}) => (
-                    <div key={id}>
-                        <ProductItem name={name} price={price} like={like} isInStock={isInStock} id={0} imgSrc={imgSrc}/>
+                {data.map( ({productId, productName, productPrice, category, like, isInStock, imgUrl}) => (
+                    <div key={productId}>
+                        <ProductItem productId={productId} productName={productName} productPrice={productPrice} category={category} like={like} isInStock={isInStock} imgUrl={imgUrl}/>
                     </div>
                     )
                 )}

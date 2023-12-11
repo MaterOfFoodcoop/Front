@@ -35,7 +35,7 @@ function QuestionItem ({id, title, createdDate, Answer, content}: Question ): JS
       {isOpen && Answer && 
         <AnswerContainer>
           <Text $fontType='Header3'><Icon>A.</Icon></Text>
-          <Text $fontType='Body'>{answer.content}</Text>
+          <Text $fontType='Body'>{Answer}</Text>
         </AnswerContainer>
       }
 

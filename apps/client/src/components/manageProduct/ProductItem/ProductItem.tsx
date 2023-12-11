@@ -8,8 +8,8 @@ import { color, font } from "ui/styles";
 import React, { useRef, useState } from "react";
 import axios from 'axios';
 
-function ProductItem({id, name, price, like, isInStock, imgSrc}: Product): JSX.Element{
-    const [changedValue, setChangedValue] = useState(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+function ProductItem({productId, productName, productPrice, like, isInStock, imgUrl}: Product): JSX.Element{
+    const [changedValue, setChangedValue] = useState(productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     const [stockStatus, setStockStatus] = useState(isInStock ? "재고 있음" : "재고 없음");
     const [isChanged, setIsChanged] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +35,7 @@ function ProductItem({id, name, price, like, isInStock, imgSrc}: Product): JSX.E
       const newPrice = Number(changedValue.replace(/,/g, ""));
       const newStockStatus = stockStatus === "재고 있음" ? true : false;
 
-      axios.post('/api/price', { id, newPrice, newStockStatus })
+      axios.post('/api/price', { productId, newPrice, newStockStatus })
       .then(response => {
           setIsChanged(false);
       })
@@ -56,11 +56,11 @@ function ProductItem({id, name, price, like, isInStock, imgSrc}: Product): JSX.E
         <Wrapper>
             <Container>
                 <StyledDiv>
-                    <Img src={imgSrc} alt={name} />
+                    <Img src={imgUrl} alt={productName} />
                     <ProductInfo>
-                        <Text $fontType='Placeholder'>{name}</Text>
+                        <Text $fontType='Placeholder'>{productName}</Text>
                         <Text $fontType='Placeholder' color={color.gray400}>
-                            ₩ {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            ₩ {productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </Text>
                     </ProductInfo>
                 </StyledDiv>

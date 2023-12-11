@@ -2,10 +2,9 @@
   "extends": "tsconfig/react-library.json",
   "include": [
     ".",
-    "../../apps/client/src/components/detail",
-    "../../apps/admin/src/context/UserContext.tsx"
   ],
   "compilerOptions": {
+    "types": ["@types/react"],
     "moduleResolution": "node",
     "rootDir": "../../",
     "baseUrl": "../../",
