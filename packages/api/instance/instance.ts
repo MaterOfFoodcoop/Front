@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const instance = axios.create({
   baseURL: `https://port-0-back-enji12clpxn1okl.sel4.cloudtype.app`,
-  // baseURL: `${process.env.API_URL}`,
   timeout: 10000,
 });
 
