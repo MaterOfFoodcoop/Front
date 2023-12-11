@@ -4,7 +4,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { Pagination } from "@mui/material";
 import { ChangeEvent, useState } from "react";
-import { Product } from "packages/types/product/product";
+import { Product } from "../../../../types/product/product";
 import ProductBox from "./ProductBox/ProductBox";
 
 interface ContentProps {
