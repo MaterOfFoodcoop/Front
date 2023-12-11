@@ -11,7 +11,7 @@ import StockStateChange from "../../components/addProduct/StockStateChange/Stock
 import ProductFilterTabs from "../../components/addProduct/ProductFilterTabs/ProductFilterTabs"
 import { PlusIcon } from "ui/icon"
 
-export default function addProduct(){
+export default function AddProduct(){
     const [selectedImage, setSelectedImage] = useState(null);
 
     const handleImageUpload = (event) => {
