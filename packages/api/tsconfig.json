@@ -4,6 +4,9 @@
     "strictNullChecks": false,
     "strictFunctionTypes": false,
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "paths": {
+      "types/*": ["../types/*"]
+    }
   }
 }
