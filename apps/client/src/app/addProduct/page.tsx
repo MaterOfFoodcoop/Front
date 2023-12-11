@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import SummaryContent from "ui/components/SummaryContent/SummaryContent"
 import AppLayout from "../../layouts/AppLayout";
 import { Text, Input, TextArea } from "ui/components"
@@ -14,7 +14,7 @@ import { PlusIcon } from "ui/icon"
 export default function AddProduct(){
     const [selectedImage, setSelectedImage] = useState(null);
 
-    const handleImageUpload = (event) => {
+    const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
       setSelectedImage(URL.createObjectURL(event.target.files[0]));
     };
 
