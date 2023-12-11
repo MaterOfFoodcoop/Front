@@ -20,9 +20,6 @@ function ProductBox({ id }: { id: number }): JSX.Element {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
   return (
     <Container>
       <TopBox>

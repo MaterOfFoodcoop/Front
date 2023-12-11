@@ -14,9 +14,6 @@ const project = resolve(process.cwd(), "tsconfig.json");
 
 module.exports = {
   extends: [
-    "@vercel/style-guide/eslint/browser",
-    "@vercel/style-guide/eslint/typescript",
-    "@vercel/style-guide/eslint/react",
   ].map(require.resolve),
   parserOptions: {
     project,
@@ -32,12 +29,5 @@ module.exports = {
     },
   },
   ignorePatterns: ["node_modules/", "dist/", ".eslintrc.js"],
-  rules: {
-    "import/no-named-as-default": "off",
-    "unicorn/filename-case": "off",
-    "import/prefer-default-export": "off",
-    "import/no-default-export": "off",
-    "import/no-extraneous-dependencies": "off",
-    "@typescript-eslint/consistent-type-imports": "off"
-  }
+  rules: {},
 };

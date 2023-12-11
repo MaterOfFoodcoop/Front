@@ -6,16 +6,18 @@ import AppLayout from "../../layouts/AppLayout";
 import { Text, Input, TextArea } from "ui/components"
 import { font, color } from "ui/styles"
 import styled from "styled-components"
-import FilterTab from "ui/components/FilterTabs/FilterTab/FilterTab"
 import StockStateChange from "../../components/addProduct/StockStateChange/StockStateChange"
 import ProductFilterTabs from "../../components/addProduct/ProductFilterTabs/ProductFilterTabs"
 import { PlusIcon } from "ui/icon"
 
 export default function AddProduct(){
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
     const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
-      setSelectedImage(URL.createObjectURL(event.target.files[0]));
+        const file = event.target.files?.[0];
+        if (file) {
+            setSelectedImage(URL.createObjectURL(file));
+        }
     };
 
     return(
@@ -23,7 +25,7 @@ export default function AddProduct(){
             <Container>
                 <SummaryContent subject="상품 추가" description="와라! 매점에 상품을 추가해 주세요."/>
                 <AddProductBox>
-                <ImageUploadBox onClick={() => document.getElementById('fileInput').click()}>
+                <ImageUploadBox onClick={() => document.getElementById('fileInput')?.click()}>
                     {selectedImage ? (
                         <img src={selectedImage} alt="Selected" style={{ width: '100%', height: '100%' }} />
                     ) : (

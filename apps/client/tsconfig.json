@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

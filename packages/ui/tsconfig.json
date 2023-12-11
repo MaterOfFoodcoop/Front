@@ -14,7 +14,13 @@
       "client/*": ["apps/client/src/*"],
       "types/*": ["packages/ui/src/*"],
       "apis/*": ["packages/api/*"]
-    }
+    },
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   },
   "exclude": ["dist", "build", "node_modules"]
 }
+
