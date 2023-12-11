@@ -17,7 +17,7 @@ export default function QnaWrite() {
 
   const handleSubmit = async () => {
     try {
-      await postQuestion(title, content);
+      await postQuestion({title, content});
       // router.push('/qna');
     } catch (error) {
       alert('질문 작성을 실패했습니다.');
