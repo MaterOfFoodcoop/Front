@@ -1,14 +1,5 @@
 'use client'
 
-<<<<<<< HEAD
-import styled from 'styled-components';
-import { Pagination } from '@mui/material';
-import { ChangeEvent, useEffect, useState } from 'react';
-import QuestionItem from './QuestionItem/QuestionItem';
-import { getQnA } from 'apis/qna/api';
-import { useQuery } from "react-query";
-import { UserProvider } from 'client/context/UserContext';
-=======
 import styled from "styled-components";
 import { Pagination } from "@mui/material";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
@@ -16,7 +7,6 @@ import QuestionItem from "./QuestionItem/QuestionItem";
 import { getQnA } from "apis/qna/api";
 import { useQuery } from "react-query";
 import { UserContext } from "client/context/UserContext";
->>>>>>> 4485268fb8d848083db5538b0c5009b87d371faf
 
 interface Props {
   subject?: string;
