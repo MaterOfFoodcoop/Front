@@ -20,10 +20,6 @@ function ProductItem({productId, productName, productPrice, like, isInStock, img
     const deleteMutation = useMutation(deleteProduct);
     const patchMutation = useMutation(patchProduct);
 
-    const onSubmit = (id) => {
-      deleteMutation.mutate(id);
-    };
-
     const openModal = () => setIsModalOpen(true);
 
     // 입력 가격 컴마 포함하기 & 바뀐 값 저장
@@ -36,27 +32,23 @@ function ProductItem({productId, productName, productPrice, like, isInStock, img
 
     const handleStockChange = (event) => {
       setStockStatus(event.target.value);
-      setIsChanged(true);
+      setIsChanged(!isChanged);
     };
 
     const handleSave = () => {
-      if (!isChanged) return;
+        if (!isChanged) return;
 
-      const newPrice = Number(changedValue.replace(/,/g, ""));
-      const newStockStatus = stockStatus === "재고 있음" ? true : false;
+        const newPrice = Number(changedValue.replace(/,/g, ""));
+        const newStockStatus = stockStatus === "재고 있음" ? true : false;
 
-      axios.post('/api/price', { productId, newPrice, newStockStatus })
-      .then(response => {
-          setIsChanged(false);
-      })
-      .catch(error => {
-          console.error(error);
-      });
-
-      const onSubmit = (productId, productPrice, isInStock) => {
-        patchMutation.mutate({productId, productPrice, isInStock});
+        patchMutation.mutate({productId, productPrice: newPrice, isInStock: newStockStatus});
+        setIsChanged(false);
     };
-    };
+
+    const handleRemove = () => {
+        deleteMutation.mutate(productId);
+        setIsModalOpen(false);
+      };
 
     const selectRef = useRef(null);
 
@@ -111,7 +103,9 @@ function ProductItem({productId, productName, productPrice, like, isInStock, img
                                     <ModalCancelButton onClick={() => setIsModalOpen(!isModalOpen)}>
                                         취소
                                     </ModalCancelButton>
-                                    <ModalRemoveButton>삭제</ModalRemoveButton>
+                                    <ModalRemoveButton onClick={handleRemove}>
+                                        삭제
+                                    </ModalRemoveButton>
                                 </ButtonBox>
                             </ModalBox>
                         </ModalContainer>
