@@ -37,12 +37,10 @@ function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
             <IconArea>
               <HamburgerIcon />
             </IconArea>
-
             <Content>
-              <CloseBtn onClick={() => onClose}>
+              <CloseBtn onClick={onClose}>
                 <CloseIcon />
               </CloseBtn>
-
               <TitleArea>
                 <Title>와라! 매점</Title>
                 <Subtitle>관리자 계정으로 로그인</Subtitle>

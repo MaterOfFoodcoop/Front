@@ -6,6 +6,7 @@ import { Question } from "ui/../../types/question/question";
 import styled from "styled-components";
 import Text from "ui/components/Text";
 import { color } from "ui/styles";
+import { useContext } from "react";
 
 function QuestionItem({
   id,

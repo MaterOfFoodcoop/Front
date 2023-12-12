@@ -2,10 +2,11 @@
 
 import styled from "styled-components";
 import { Pagination } from "@mui/material";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import QuestionItem from "./QuestionItem/QuestionItem";
 import { getQnA } from "apis/qna/api";
 import { useQuery } from "react-query";
+import { UserContext } from "client/context/UserContext";
 
 interface Props {
   subject?: string;
