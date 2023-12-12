@@ -7,18 +7,42 @@ import ProductItem from '../../manageProduct/ProductItem/ProductItem'
 import Link from 'next/link';
 import { useState } from 'react';
 import FilterTab from 'ui/components/FilterTabs/FilterTab/FilterTab';
+import { ProductCategory } from 'types/product/product';
+import { useMemo } from 'react';
 
-const ProductFilters = ['과자', '음료', '아이스크림', '가공식품', '기타'];
+interface ProductListProps {
+    items: '상품' | number;
+    onSelectCategory: (category: string) => void;
+  }
 
-function ProductFilterTabs(): JSX.Element {
-    const [activeTab, setActiveTab] = useState(ProductFilters[0]);
+const CategoryMap = {
+    '전체': '전체',
+    'Chip': ProductCategory.Chip,
+    'Beverage': ProductCategory.Beverage,
+    'IceCream': ProductCategory.IceCream,
+    'ProcessedFood': ProductCategory.ProcessedFood,
+    'Etc': ProductCategory.Etc,
+  };
+
+  const getFilterItems = (items: '상품' | number): string[] => {
+    return items === '상품' ? Object.keys(CategoryMap) : Array.from({ length: items as number }, (_, i) => `#${i + 1}`);
+  };
+
+function ProductFilterTabs({ items, onSelectCategory }: ProductListProps): JSX.Element {
+    const productItems = useMemo(() => getFilterItems(items), [items]);
+    const [activeTab, setActiveTab] = useState(productItems[0]);
 
     return (
         <Container>
-            {ProductFilters.map((item, index) => (
-                <FilterTab key={index} name={item} 
+            {productItems.map((item, index) => (
+                <FilterTab
+                key={index}
+                name={CategoryMap[item]}
                 $active={item === activeTab}
-                onClick={() => setActiveTab(item)}
+                onClick={() => {
+                    setActiveTab(item);
+                    onSelectCategory(item);
+                }}
                 />
             ))}
         </Container>
@@ -34,3 +58,7 @@ const Container = styled.div`
   width: 100%;
   gap: 1.75rem;
 `
+
+function onSelectCategory(item: string) {
+    throw new Error('Function not implemented.');
+}

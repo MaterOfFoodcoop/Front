@@ -11,16 +11,32 @@ import ProductFilterTabs from "../../components/addProduct/ProductFilterTabs/Pro
 import { PlusIcon } from "ui/icon"
 import { addProduct } from "apis/addProduct/api";
 import { useMutation } from 'react-query';
-import { Product } from 'types/product/product';
+import { Product, ProductCategory } from 'types/product/product';
 
 export default function AddProduct(){
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [productName, setProductName] = useState("");
+    const [productDescription, setProductDescription] = useState("");
+    const [category, setCategory] = useState("");
+    const [price, setPrice] = useState(0);
+    const [inStock, setInStock] = useState(false);
 
-    const mutation = useMutation(addProduct);
+    const [selectedCategory, setSelectedCategory] = useState('전체');
 
-    const onSubmit = (product: Product) => {
-      mutation.mutate(product);
-    };
+
+    const addMutation = useMutation(addProduct);
+
+    const onSubmit = () => {
+        const postProduct = {
+          productName: productName,
+          category: ProductCategory[category],
+          productDetail: productDescription,
+          productPrice: price,
+          isInStock: inStock
+        };
+        addMutation.mutate(postProduct);
+      };
+      
 
     const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -49,10 +65,22 @@ export default function AddProduct(){
                     />
                 </ImageUploadBox>
                     <AddInfoBox>
-                        <Input label="상품 이름" placeholder="Ex. 차카니" width={"44rem"} />
-                        <TextArea label="상품 설명" placeholder="Ex. 추억의 차카니입니다." width={"44rem"} />
+                        <Input
+                            label="상품 이름"
+                            placeholder="Ex. 차카니"
+                            width={"44rem"}
+                            value={productName}
+                            onChange={(e) => setProductName(e.target.value)}
+                        />
+                        <TextArea
+                            label="상품 설명"
+                            placeholder="Ex. 추억의 차카니입니다."
+                            width={"44rem"}
+                            value={productDescription}
+                            onChange={(e) => setProductDescription(e.target.value)}
+                        />
                         <Text $fontType="SubTitle2">상품 종류</Text>
-                        <ProductFilterTabs />
+                        <ProductFilterTabs items={"상품"} onSelectCategory={setSelectedCategory} />
                         <StyledDiv>
                             <Input label="가격" placeholder="Ex. 1,700" width={"22rem"} />
                             <StockStateChange />

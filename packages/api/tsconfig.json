@@ -5,15 +5,11 @@
     "strictNullChecks": false,
     "strictFunctionTypes": false,
     "noUnusedLocals": false,
-<<<<<<< HEAD
-    "noUnusedParameters": false
-=======
     "noUnusedParameters": false,
     "paths": {
       "types/*": ["../types/*"],
       "client/*": ["../../apps/client/src/*"]
     },
     "lib": ["ES2015", "dom"]
->>>>>>> 4485268fb8d848083db5538b0c5009b87d371faf
   }
 }
