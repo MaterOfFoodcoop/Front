@@ -39,9 +39,9 @@ function AdminLoginModal({ isOpen, onClose }: AdminLoginProps) {
             </IconArea>
 
             <Content>
-              <CloseBtn onClick={() => onClose}>
-                <CloseIcon />
-              </CloseBtn>
+            <CloseBtn onClick={() => onClose()}>
+              <CloseIcon />
+            </CloseBtn>
 
               <TitleArea>
                 <Title>와라! 매점</Title>

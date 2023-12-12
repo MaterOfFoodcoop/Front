@@ -8,12 +8,15 @@ import AppLayout from "client/layouts/AppLayout";
 import styled from "styled-components";
 import { getProducts } from "apis/products/api";
 import { useQuery } from "react-query";
+import { useState } from 'react';
 
 export default function Home() {
   const { data: products } = useQuery({
     queryKey: ["products"],
     queryFn: () => getProducts(),
   });
+
+  const [selectedCategory, setSelectedCategory] = useState('전체');
 
   return (
     <AppLayout>
@@ -27,8 +30,8 @@ export default function Home() {
           placeholder="원하는 상품을 검색해 보세요."
           buttonText="검색"
         />
-        <FilterTabs items={"상품"} />
-        <Products productsData={products} />
+        <FilterTabs items={"상품"} onSelectCategory={setSelectedCategory} />
+        <Products productsData={products} selectedCategory={selectedCategory} />
         </>
       </Container>
     </AppLayout>

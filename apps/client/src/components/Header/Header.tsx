@@ -18,6 +18,12 @@ function Header({}: HeaderProps): JSX.Element {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  if (isModalOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+  
   useEffect(() => {
     const checkLoginStatus = async () => {
       const loggedIn = await loginCheck();
@@ -38,7 +44,7 @@ function Header({}: HeaderProps): JSX.Element {
         <Link href="/qna" $active={pathname === "/qna"}>
           Q&A
         </Link>
-        {isLoggedIn && <Link href='/manage-product' $active={pathname === '/manage-product'}>상품 관리</Link>}
+        {isLoggedIn && <Link href='/manageProduct' $active={pathname === '/manageProduct'}>상품 관리</Link>}
 
         {isLoggedIn ? 
         (<AdminText>Admin</AdminText>) : (
