@@ -5,7 +5,7 @@ export const deleteProduct = async (productId) => {
   const { data } = await instance.delete(`/products/${productId}`, {
     headers: {
       // 'Authorization': `Bearer ${token}`
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJzdWIiOiIwIiwiaWF0IjoxNzAyMzk2OTMwLCJleHAiOjE3MDI0MDA1MzB9.pYOTk8RfNThaSNojqSccozQQZcLRHrKbZtt-p3xoAAw`
+      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJzdWIiOiIwIiwiaWF0IjoxNzAyNDIzMDg4LCJleHAiOjE3MDI0MjY2ODh9.EYCQk_cJ8z5kdcy19a-VFXoeIsr4HYVvOO6eXMw0gpQ`
     }
   });
   console.log(data);
