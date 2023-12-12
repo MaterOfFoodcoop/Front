@@ -6,6 +6,8 @@ import { Question } from "ui/../../types/question/question";
 import styled from "styled-components";
 import Text from "ui/components/Text";
 import { color } from "ui/styles";
+import { useContext } from "react";
+import { UserContext } from "client/context/UserContext";
 
 function QuestionItem({
   id,
@@ -15,6 +17,8 @@ function QuestionItem({
   content,
 }: Question): JSX.Element {
   const { value: isOpen, toggle: toggleOpen } = useBooleanState();
+
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
   const dateString = createdDate;
   const date = new Date(dateString);
@@ -58,7 +62,8 @@ function QuestionItem({
         </AnswerContainer>
       )}
 
-      {isOpen && !Answer && <AnsweringBox id={id} />}
+      {/*  */}
+      {isLoggedIn && isOpen && !Answer && <AnsweringBox id={id} />}
     </Container>
   );
 }

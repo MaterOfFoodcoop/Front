@@ -1,5 +1,5 @@
 "use client";
-
+import { UserProvider } from "client/context/UserContext";
 import { GlobalStyle } from "ui/styles/index";
 import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -20,10 +20,12 @@ const queryClient = new QueryClient({
 const Provider = ({ children }: ProviderProps) => {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <GlobalStyle />
-        {children}
-      </QueryClientProvider>
+      <UserProvider>
+        <QueryClientProvider client={queryClient}>
+          <GlobalStyle />
+          {children}
+        </QueryClientProvider>
+      </UserProvider>
     </>
   );
 };

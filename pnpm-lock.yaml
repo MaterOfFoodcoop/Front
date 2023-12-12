@@ -82,7 +82,7 @@ importers:
         specifier: 14.0.1
         version: 14.0.1(react-dom@18.2.0)(react@18.2.0)
       react:
-        specifier: ^18
+        specifier: ^18.2.0
         version: 18.2.0
       react-dom:
         specifier: ^18
@@ -121,6 +121,9 @@ importers:
       axios:
         specifier: ^1.6.2
         version: 1.6.2
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
       react-query:
         specifier: ^3.39.3
         version: 3.39.3(react-dom@18.2.0)(react@18.2.0)
@@ -4199,6 +4202,7 @@ packages:
 
   /loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
+    hasBin: true
     dependencies:
       js-tokens: 4.0.0
 
