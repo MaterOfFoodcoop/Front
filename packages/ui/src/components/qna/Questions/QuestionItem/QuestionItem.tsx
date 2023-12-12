@@ -1,5 +1,6 @@
 'use client'
 
+<<<<<<< HEAD
 import useBooleanState from '../../../../../../../apps/client/src/hooks/useBooleanState';
 import AnsweringBox from 'ui/components/qna/Questions/AnsweringBox/AnsweringBox';
 import { Question } from 'ui/../../types/question/question';
@@ -8,6 +9,15 @@ import Text from 'ui/components/Text';
 import { color } from 'ui/styles';
 import { loginCheck } from 'apis/auth/api';
 import { useState, useEffect } from 'react';
+=======
+import useBooleanState from "../../../../../../../apps/client/src/hooks/useBooleanState";
+import AnsweringBox from "ui/components/qna/Questions/AnsweringBox/AnsweringBox";
+import { Question } from "ui/../../types/question/question";
+import styled from "styled-components";
+import Text from "ui/components/Text";
+import { color } from "ui/styles";
+import { useContext } from "react";
+>>>>>>> 4485268fb8d848083db5538b0c5009b87d371faf
 
 function QuestionItem ({id, title, createdDate, Answer, content}: Question ): JSX.Element {
   const { value: isOpen, toggle: toggleOpen } = useBooleanState();

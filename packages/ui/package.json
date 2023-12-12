@@ -21,6 +21,12 @@
     "@mui/material": "^5.14.17",
     "axios": "^1.6.2",
     "eslint": "^8.53.0",
+<<<<<<< HEAD
+=======
+    "js-cookie": "^3.0.5",
+    "next": "14.0.1",
+    "react-dom": "^18",
+>>>>>>> 4485268fb8d848083db5538b0c5009b87d371faf
     "react-query": "^3.39.3",
     "styled-components": "^6.1.0",
     "styled-reset": "^4.5.1",
