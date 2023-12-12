@@ -9,9 +9,18 @@ import styled from "styled-components"
 import StockStateChange from "../../components/addProduct/StockStateChange/StockStateChange"
 import ProductFilterTabs from "../../components/addProduct/ProductFilterTabs/ProductFilterTabs"
 import { PlusIcon } from "ui/icon"
+import { addProduct } from "apis/addProduct/api";
+import { useMutation } from 'react-query';
+import { Product } from 'types/product/product';
 
 export default function AddProduct(){
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+    const mutation = useMutation(addProduct);
+
+    const onSubmit = (product: Product) => {
+      mutation.mutate(product);
+    };
 
     const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];

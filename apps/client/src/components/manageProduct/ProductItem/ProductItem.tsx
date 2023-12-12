@@ -1,18 +1,28 @@
 'use client'
 
 import styled from "styled-components"
-import { Product } from 'ui/../../types/product/product';
 import { Text, Input } from "ui/components";
 import { ArrowDownIcon } from "ui/icon";
 import { color, font } from "ui/styles";
 import React, { useRef, useState } from "react";
 import axios from 'axios';
+import { useMutation } from 'react-query';
+import { deleteProduct } from "apis/manageProduct/deleteProduct/api";
+import { patchProduct } from "apis/manageProduct/patchProduct/api";
+import { Product } from 'types/product/product';
 
 function ProductItem({productId, productName, productPrice, like, isInStock, imgUrl}: Product): JSX.Element{
     const [changedValue, setChangedValue] = useState(productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     const [stockStatus, setStockStatus] = useState(isInStock ? "재고 있음" : "재고 없음");
     const [isChanged, setIsChanged] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const deleteMutation = useMutation(deleteProduct);
+    const patchMutation = useMutation(patchProduct);
+
+    const onSubmit = (id) => {
+      deleteMutation.mutate(id);
+    };
 
     const openModal = () => setIsModalOpen(true);
 
@@ -42,6 +52,10 @@ function ProductItem({productId, productName, productPrice, like, isInStock, img
       .catch(error => {
           console.error(error);
       });
+
+      const onSubmit = (productId, productPrice, isInStock) => {
+        patchMutation.mutate({productId, productPrice, isInStock});
+    };
     };
 
     const selectRef = useRef(null);
