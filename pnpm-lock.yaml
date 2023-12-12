@@ -156,8 +156,6 @@ importers:
       eslint:
         specifier: ^8.53.0
         version: 8.53.0
-<<<<<<< HEAD
-=======
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
@@ -167,7 +165,6 @@ importers:
       react-dom:
         specifier: ^18
         version: 18.2.0(react@18.2.0)
->>>>>>> 4485268fb8d848083db5538b0c5009b87d371faf
       react-query:
         specifier: ^3.39.3
         version: 3.39.3(react-dom@18.2.0)(react@18.2.0)
