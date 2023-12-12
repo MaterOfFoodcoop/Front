@@ -1,28 +1,30 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { color } from "ui/styles";
 import AdminLoginModal from "./AdminLoginModal/AdminLoginModal";
 import { PersonIcon } from "ui/icon";
-// import { UserContext } from "apps/admin/src/context/UserContext";
+import { loginCheck } from 'apis/auth/api';
 
 interface HeaderProps {}
 
 function Header({}: HeaderProps): JSX.Element {
   const pathname = usePathname();
-  // const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  // if (isModalOpen) {
-  //   document.body.style.overflow = 'hidden';
-  // } else {
-  //   document.body.style.overflow = 'auto';
-  // }
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const loggedIn = await loginCheck();
+      setIsLoggedIn(loggedIn);
+    };
+    checkLoginStatus();
+  }, []);
 
   return (
     <StyledHeader>
@@ -30,22 +32,21 @@ function Header({}: HeaderProps): JSX.Element {
         <Link href="/" $active={true}>
           <Text>와라! 매점</Text>
         </Link>
-        <Link href="/recommand" $active={pathname === "/recommand"}>
+        {/* <Link href="/recommand" $active={pathname === "/recommand"}>
           가격대별 추천
-        </Link>
+        </Link> */}
         <Link href="/qna" $active={pathname === "/qna"}>
           Q&A
         </Link>
-        {/* {isLoggedIn && <Link href='/manage-product' $active={pathname === '/manage-product'}>상품 관리</Link>} */}
-        <Link href="/manageProduct" $active={pathname === "/manageProduct"}>
-          상품 관리
-        </Link>
-        <LoginIcon onClick={openModal}>
-          {/* {isLoggedIn ? 
-              <Text>로그아웃</Text> : <PersonIcon /> 
-            } */}
-          <PersonIcon />
-        </LoginIcon>
+        {isLoggedIn && <Link href='/manage-product' $active={pathname === '/manage-product'}>상품 관리</Link>}
+
+        {isLoggedIn ? 
+        (<AdminText>Admin</AdminText>) : (
+          <LoginIcon onClick={openModal}>
+            <PersonIcon />
+          </LoginIcon>
+        )}
+
         {isModalOpen && (
           <AdminLoginModal isOpen={isModalOpen} onClose={closeModal} />
         )}
@@ -80,20 +81,28 @@ const Nav = styled.nav`
 
 const Link = styled.a<{ $active: boolean }>`
   font-weight: 800;
-  font-size: 1.25rem;
-  color: ${(props) => (props.$active ? "black" : color.gray200)};
+  font-size: 1rem;
+  color: ${color.gray200};
   font-family: "nanumSquareNeo";
   font-weight: 800;
   font-size: 20px;
+  &:hover {
+    color: 'black';
+  }
 `;
 
 const Text = styled.p`
-  font-weight: 800;
   font-size: 1.25rem;
   color: #000000;
   font-family: "nanumSquareNeo";
   font-weight: 800;
-  font-size: 22px;
+`;
+
+const AdminText = styled(Text)`
+  position: absolute;
+  right: 7.5rem;
+  font-size: 1rem;
+  font-weight: 700;
 `;
 
 const LoginIcon = styled.button`

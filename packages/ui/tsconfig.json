@@ -1,6 +1,8 @@
 {
   "extends": "tsconfig/react-library.json",
-  "include": ["."],
+  "include": [
+    ".",
+  ],
   "compilerOptions": {
     "types": ["@types/react"],
     "moduleResolution": "node",
@@ -9,8 +11,8 @@
     "paths": {
       "ui/*": ["packages/ui/src/*"],
       "client/*": ["apps/client/src/*"],
-      "types/*": ["packages/types/*"],
-      "apis/*": ["packages/api/*"]
+      "types/*": ["packages/ui/src/*"],
+      "apis/*": ["packages/api/*"],
     },
     "noImplicitAny": false,
     "strictNullChecks": false,
@@ -20,3 +22,4 @@
   },
   "exclude": ["dist", "build", "node_modules"]
 }
+
