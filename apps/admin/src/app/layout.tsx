@@ -1,4 +1,3 @@
-import { ThemeProvider } from "@mui/material";
 import Provider from "ui/components/Provider";
 import StyledComponentsRegistry from "admin/lib/registry";
 import type { Metadata } from "next";

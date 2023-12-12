@@ -13,8 +13,8 @@ function Recommand(){
             <Container>
                 <SummaryContent subject="가격대별 추천" description="원하는 가격대와 맞는 상품 조합을 추천해 드릴게요." />
                 <PriceSlider />
-                <FilterTabs items={4} />
-                <Products/>
+                {/* <FilterTabs items={4} />
+                <Products/> */}
             </Container>
         </AppLayout>
     )

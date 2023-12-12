@@ -1,33 +1,42 @@
 'use client'
 
 import { ChangeEvent, useState, useEffect } from 'react';
-import { MAIN_PRODUCT_DATA } from 'ui/../../mocks/main/main';
 import SummaryContent from "ui/components/SummaryContent/SummaryContent"
 import AppLayout from "../../layouts/AppLayout"
 import styled from "styled-components"
 import Button from "ui/components/Button/SearchButton"
 import ProductItem from '../../components/manageProduct/ProductItem/ProductItem';
 import Link from 'next/link';
+import { Pagination } from "@mui/material";
+import { Product } from "../../../../../packages/types/product/product";
+import { getProducts } from "apis/products/api";
+import { useQuery } from "react-query";
+
 
 function ManageProduct(): JSX.Element {
-    const dummydata = MAIN_PRODUCT_DATA;
-    const ITEMS_PER_PAGE = 7;
-    const LAST_PAGE = Math.ceil(dummydata.length / ITEMS_PER_PAGE);
+    const { data: products } = useQuery({
+        queryKey: ["products"],
+        queryFn: () => getProducts(),
+    });
 
     const [page, setPage] = useState(1);
-    const [data, setData] = useState(dummydata.slice(0, ITEMS_PER_PAGE));
+    const [displayData, setDisplayData] = useState<Product[]>([]);
+
+    const ITEMS_PER_PAGE = 7;
+    const LAST_PAGE = Math.ceil((products?.length || 0) / ITEMS_PER_PAGE);
 
     useEffect(() => {
-        if(page === LAST_PAGE) {
-          setData(dummydata.slice(ITEMS_PER_PAGE * (page - 1)));
-        } else {
-          setData(dummydata.slice(ITEMS_PER_PAGE * (page - 1), ITEMS_PER_PAGE * page));
-        }  
-    }, [LAST_PAGE, dummydata, page]);
+        if (products) {
+          const startIdx = (page - 1) * ITEMS_PER_PAGE;
+          const endIdx = startIdx + ITEMS_PER_PAGE;
+          setDisplayData(products.slice(startIdx, endIdx));
+        }
+      }, [products, page]);
 
-    const handlePage = (event: ChangeEvent<unknown>, value: number) => {
-        setPage(value);
-    };    
+    const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+    };
+
 
     return(
         <AppLayout>
@@ -41,12 +50,15 @@ function ManageProduct(): JSX.Element {
                     <Button>+ 상품 추가하기</Button>
                 </Link>
                 </ButtonBox>
-                {data.map( ({productId, productName, productPrice, category, like, isInStock, imgUrl}) => (
-                    <div key={productId}>
-                        <ProductItem productId={productId} productName={productName} productPrice={productPrice} category={category} like={like} isInStock={isInStock} imgUrl={imgUrl}/>
-                    </div>
-                    )
-                )}
+                {displayData.map( ({productId, productName, productPrice, category, like, isInStock, imgUrl}) => (
+                <div key={productId}>
+                  <ProductItem productId={productId} productName={productName} productPrice={productPrice} category={category} like={like} isInStock={isInStock} imgUrl={imgUrl}/>
+                </div>
+              )
+            )}
+            <PaginationContainer>
+                <Pagination count={LAST_PAGE} page={page} onChange={handlePageChange} />
+            </PaginationContainer>
             </Container>
         </AppLayout>
     )
@@ -55,7 +67,7 @@ function ManageProduct(): JSX.Element {
 export default ManageProduct;
 
 const Container = styled.div`
-    padding: 6rem 11.25rem;   
+    padding: 6rem 11.25rem;
 `
 
 const ButtonBox = styled.div`
@@ -64,4 +76,10 @@ const ButtonBox = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     margin-top: 4.8rem;
+`
+
+const PaginationContainer = styled.div`
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
 `

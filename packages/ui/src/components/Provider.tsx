@@ -1,8 +1,9 @@
 "use client";
-
+import { UserProvider } from "client/context/UserContext";
 import { GlobalStyle } from "ui/styles/index";
-import type { ReactNode } from "react";
+import { useState, type ReactNode, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Cookies from "js-cookie";
 
 interface ProviderProps {
   children: ReactNode;
@@ -18,12 +19,21 @@ const queryClient = new QueryClient({
 });
 
 const Provider = ({ children }: ProviderProps) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <GlobalStyle />
-        {children}
-      </QueryClientProvider>
+      <UserProvider value={{ isLoggedIn, setIsLoggedIn }}>
+        <QueryClientProvider client={queryClient}>
+          <GlobalStyle />
+          {children}
+        </QueryClientProvider>
+      </UserProvider>
     </>
   );
 };

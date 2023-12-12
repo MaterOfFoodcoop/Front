@@ -1,9 +1,15 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
     "noImplicitAny": false,
     "strictNullChecks": false,
     "strictFunctionTypes": false,
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "paths": {
+      "types/*": ["../types/*"],
+      "client/*": ["../../apps/client/src/*"]
+    },
+    "lib": ["ES2015", "dom"]
   }
 }

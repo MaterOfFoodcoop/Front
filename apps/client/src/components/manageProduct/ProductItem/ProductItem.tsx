@@ -1,18 +1,24 @@
 'use client'
 
 import styled from "styled-components"
-import { Product } from 'ui/../../types/product/product';
 import { Text, Input } from "ui/components";
 import { ArrowDownIcon } from "ui/icon";
 import { color, font } from "ui/styles";
 import React, { useRef, useState } from "react";
 import axios from 'axios';
+import { useMutation } from 'react-query';
+import { deleteProduct } from "apis/manageProduct/deleteProduct/api";
+import { patchProduct } from "apis/manageProduct/patchProduct/api";
+import { Product } from 'types/product/product';
 
 function ProductItem({productId, productName, productPrice, like, isInStock, imgUrl}: Product): JSX.Element{
     const [changedValue, setChangedValue] = useState(productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     const [stockStatus, setStockStatus] = useState(isInStock ? "재고 있음" : "재고 없음");
     const [isChanged, setIsChanged] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const deleteMutation = useMutation(deleteProduct);
+    const patchMutation = useMutation(patchProduct);
 
     const openModal = () => setIsModalOpen(true);
 
@@ -26,23 +32,23 @@ function ProductItem({productId, productName, productPrice, like, isInStock, img
 
     const handleStockChange = (event) => {
       setStockStatus(event.target.value);
-      setIsChanged(true);
+      setIsChanged(!isChanged);
     };
 
     const handleSave = () => {
-      if (!isChanged) return;
+        if (!isChanged) return;
 
-      const newPrice = Number(changedValue.replace(/,/g, ""));
-      const newStockStatus = stockStatus === "재고 있음" ? true : false;
+        const newPrice = Number(changedValue.replace(/,/g, ""));
+        const newStockStatus = stockStatus === "재고 있음" ? true : false;
 
-      axios.post('/api/price', { productId, newPrice, newStockStatus })
-      .then(response => {
-          setIsChanged(false);
-      })
-      .catch(error => {
-          console.error(error);
-      });
+        patchMutation.mutate({productId, productPrice: newPrice, isInStock: newStockStatus});
+        setIsChanged(false);
     };
+
+    const handleRemove = () => {
+        deleteMutation.mutate(productId);
+        setIsModalOpen(false);
+      };
 
     const selectRef = useRef(null);
 
@@ -97,7 +103,9 @@ function ProductItem({productId, productName, productPrice, like, isInStock, img
                                     <ModalCancelButton onClick={() => setIsModalOpen(!isModalOpen)}>
                                         취소
                                     </ModalCancelButton>
-                                    <ModalRemoveButton>삭제</ModalRemoveButton>
+                                    <ModalRemoveButton onClick={handleRemove}>
+                                        삭제
+                                    </ModalRemoveButton>
                                 </ButtonBox>
                             </ModalBox>
                         </ModalContainer>

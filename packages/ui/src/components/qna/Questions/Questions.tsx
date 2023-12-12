@@ -1,12 +1,12 @@
 'use client'
 
-import styled from 'styled-components';
-import { Pagination } from '@mui/material';
-import { ChangeEvent, useEffect, useState } from 'react';
-import QuestionItem from './QuestionItem/QuestionItem';
-import { getQnA } from 'apis/qna/api';
+import styled from "styled-components";
+import { Pagination } from "@mui/material";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
+import QuestionItem from "./QuestionItem/QuestionItem";
+import { getQnA } from "apis/qna/api";
 import { useQuery } from "react-query";
-import { UserProvider } from 'client/context/UserContext';
+import { UserContext } from "client/context/UserContext";
 
 interface Props {
   subject?: string;

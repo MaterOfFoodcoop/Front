@@ -1,30 +1,34 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { color } from "ui/styles";
 import AdminLoginModal from "./AdminLoginModal/AdminLoginModal";
 import { PersonIcon } from "ui/icon";
-import { loginCheck } from 'apis/auth/api';
+import { UserContext } from "client/context/UserContext";
 
 interface HeaderProps {}
 
 function Header({}: HeaderProps): JSX.Element {
   const pathname = usePathname();
-  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
-    const checkLoginStatus = async () => {
-      const loggedIn = await loginCheck();
-      setIsLoggedIn(loggedIn);
-    };
-    checkLoginStatus();
-  }, []);
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
+
+  if (typeof window !== 'undefined') {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }
 
   return (
     <StyledHeader>
@@ -38,10 +42,15 @@ function Header({}: HeaderProps): JSX.Element {
         <Link href="/qna" $active={pathname === "/qna"}>
           Q&A
         </Link>
-        {isLoggedIn && <Link href='/manage-product' $active={pathname === '/manage-product'}>상품 관리</Link>}
+        {isLoggedIn && (
+          <Link href="/manageProduct" $active={pathname === "/manageProduct"}>
+            상품 관리
+          </Link>
+        )}
 
-        {isLoggedIn ? 
-        (<AdminText>Admin</AdminText>) : (
+        {isLoggedIn ? (
+          <AdminText>로그아웃</AdminText>
+        ) : (
           <LoginIcon onClick={openModal}>
             <PersonIcon />
           </LoginIcon>
@@ -102,7 +111,7 @@ const AdminText = styled(Text)`
   position: absolute;
   right: 7.5rem;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
 `;
 
 const LoginIcon = styled.button`
