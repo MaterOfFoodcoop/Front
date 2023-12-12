@@ -22,10 +22,12 @@ function Header({}: HeaderProps): JSX.Element {
     console.log(isLoggedIn);
   }, [isLoggedIn]);
 
-  if (isModalOpen) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = 'auto';
+  if (typeof window !== 'undefined') {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   }
 
   return (
@@ -45,9 +47,15 @@ function Header({}: HeaderProps): JSX.Element {
             상품 관리
           </Link>
         )}
-        <LoginIcon onClick={openModal}>
-          {isLoggedIn ? <Text>로그아웃</Text> : <PersonIcon />}
-        </LoginIcon>
+
+        {isLoggedIn ? (
+          <AdminText>로그아웃</AdminText>
+        ) : (
+          <LoginIcon onClick={openModal}>
+            <PersonIcon />
+          </LoginIcon>
+        )}
+
         {isModalOpen && (
           <AdminLoginModal isOpen={isModalOpen} onClose={closeModal} />
         )}
@@ -103,7 +111,7 @@ const AdminText = styled(Text)`
   position: absolute;
   right: 7.5rem;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
 `;
 
 const LoginIcon = styled.button`

@@ -18,12 +18,6 @@ function Header({}: HeaderProps): JSX.Element {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  // if (isModalOpen) {
-  //   document.body.style.overflow = 'hidden';
-  // } else {
-  //   document.body.style.overflow = 'auto';
-  // }
-
   return (
     <StyledHeader>
       <Nav>

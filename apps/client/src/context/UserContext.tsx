@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import React, { createContext, useState, Dispatch, SetStateAction, ReactNode } from "react";
-=======
 import React, {
   createContext,
   useContext,
@@ -8,29 +5,10 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
->>>>>>> 4485268fb8d848083db5538b0c5009b87d371faf
 
 interface UserContextType {
   isLoggedIn: boolean;
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
-<<<<<<< HEAD
-};
-
-export const UserContext = createContext<UserContextType>({
-  isLoggedIn: false,
-  setIsLoggedIn: () => {}
-});
-
-export const UserProvider = ({ children }: { children: ReactNode }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    return (
-        <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-            {children}
-        </UserContext.Provider>
-    )
-}
-=======
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -53,4 +31,3 @@ export const useUser = () => {
   }
   return context;
 };
->>>>>>> 4485268fb8d848083db5538b0c5009b87d371faf
