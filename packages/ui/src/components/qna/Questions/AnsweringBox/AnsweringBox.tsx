@@ -6,35 +6,36 @@ import { useMutation } from 'react-query';
 import { postAnswer } from 'apis/qna/answer/api';
 import axios from 'axios';
 
-function AnsweringBox (id): JSX.Element{
+function AnsweringBox ({id}): JSX.Element{
     const [answer, setAnswer] = useState("");
 
-    const mutation = useMutation((data) => postAnswer({answer, id}));
+    const postMutation = useMutation(postAnswer, {
+        onSuccess: () => {
+            alert('답변 작성을 성공했습니다.');
+            window.location.reload();
+        }
+    });
 
     const handleSubmit = (e) => {
-      e.preventDefault();
-      mutation.mutate(e, id);
-      setAnswer("");
+        try {
+            e.preventDefault();
+            const content = answer;
+            const questionId = id;
+            postMutation.mutate({content, questionId});
+            setAnswer("");
+        } catch (error) {
+            alert('답변 작성을 실패했습니다.');
+            console.error(error);
+        }
     };
     
-    if (mutation.isLoading) {
-        console.log("Loading...");
-    }
-
-    if (mutation.isError) {
-        console.error("Error:", mutation.error);
-    }
-
-    if (mutation.isSuccess) {
-        console.log("Success!", mutation.data);
-    }
-
+    
     return(
         <AnswerBox onSubmit={handleSubmit}>
             <Text $fontType='Header3'><Icon>A.</Icon></Text>
             <AnswerInputArea>
                 <AnswerInput type="text" value={answer} onChange={e => setAnswer(e.target.value)} />
-                <SubmitButton type="submit" value="제출">등록</SubmitButton>
+                <SubmitButton type="submit" value="제출" onClick={handleSubmit}>등록</SubmitButton>
             </AnswerInputArea>
         </AnswerBox>
     );

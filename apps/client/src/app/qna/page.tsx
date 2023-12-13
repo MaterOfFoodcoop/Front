@@ -6,14 +6,22 @@ import SearchBox from "ui/components/SearchBox/SearchBox";
 import AppLayout from "client/layouts/AppLayout"
 import styled from "styled-components"
 import Link from 'next/link';
+import { useUser } from "client/context/UserContext";
+import QnASearchBox from "client/components/qna/SearchBox/SearchBox";
 
 export default function Qna(){
+    const isLoggedIn = useUser();
+
     return(
         <AppLayout>
             <Container>
                 <SummaryContent subject="Q&A" description="매점을 이용하면서 궁금했던/바라는 점을 물어볼 수 있어요."/>
                 <Link href='/qna/write'>
-                    <SearchBox placeholder="Q&A를 검색해 보세요." buttonText="질문 작성하기"/>
+                    {isLoggedIn ? (
+                        <SearchBox placeholder="Q&A를 검색해 보세요." buttonText="검색" />
+                    ) : (
+                        <QnASearchBox/>
+                    )}
                 </Link>
                 <Questions />
             </Container>

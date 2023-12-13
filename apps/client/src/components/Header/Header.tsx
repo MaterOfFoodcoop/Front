@@ -91,12 +91,13 @@ const Nav = styled.nav`
 const Link = styled.a<{ $active: boolean }>`
   font-weight: 800;
   font-size: 1rem;
-  color: ${color.gray200};
+  color: ${props => props.$active ? 'black' : color.gray200};
   font-family: "nanumSquareNeo";
   font-weight: 800;
   font-size: 20px;
   &:hover {
     color: 'black';
+    transition: 0.3s ease;
   }
 `;
 

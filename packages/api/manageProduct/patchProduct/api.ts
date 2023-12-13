@@ -5,7 +5,7 @@ export const patchProduct = async ({productId, productPrice, isInStock}) => {
   const { data } = await instance.patch(`/products/${productId}`, {productPrice, isInStock}, {
     headers: {
       // 'Authorization': `Bearer ${token}`
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJzdWIiOiIwIiwiaWF0IjoxNzAyNDIzMDg4LCJleHAiOjE3MDI0MjY2ODh9.EYCQk_cJ8z5kdcy19a-VFXoeIsr4HYVvOO6eXMw0gpQ`
+      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJzdWIiOiIwIiwiaWF0IjoxNzAyNDc1Njg0LCJleHAiOjE3MDI4MzU2ODR9.LF_zLUg36jorKfkGrdIFTOgF64naMk9ZBmAJMzCBWFU`
     }
   });
   console.log(data);
