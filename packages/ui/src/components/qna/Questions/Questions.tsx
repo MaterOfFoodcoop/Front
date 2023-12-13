@@ -6,7 +6,6 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import QuestionItem from "./QuestionItem/QuestionItem";
 import { getQnA } from "apis/qna/api";
 import { useQuery } from "react-query";
-import { UserContext } from "client/context/UserContext";
 
 interface Props {
   subject?: string;
@@ -14,7 +13,7 @@ interface Props {
 }
 
 function Questions ({}: Props): JSX.Element {
-  const { data: QnAs, isLoading, error } = useQuery(
+  const { data: QnAs } = useQuery(
     'qna',
     () => getQnA(),
   );
@@ -48,7 +47,7 @@ function Questions ({}: Props): JSX.Element {
           createdAt,
           answer
         }) => (  
-            <QuestionItem key={id} id={id} title={title} createdDate={createdAt} Answer={answer} content={content}/>
+            <QuestionItem id={id} title={title} createdDate={createdAt} Answer={answer} content={content}/>
           )
         )}
       </ProductContainer>

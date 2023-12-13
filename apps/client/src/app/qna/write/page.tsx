@@ -89,4 +89,5 @@ const Row = styled.div`
   gap: 2rem;
   width: 100%;
   justify-content: flex-end;
+  margin-bottom: 6.5rem;
 `;
