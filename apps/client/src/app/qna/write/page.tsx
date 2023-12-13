@@ -7,23 +7,31 @@ import Input from "ui/components/Input";
 import TextArea from "ui/components/TextArea";
 import WriteButton from "ui/components/Button/WriteButton";
 import SummaryContent from "ui/components/SummaryContent/SummaryContent";
-import { useRouter } from 'next/router';
 import { postQuestion } from 'apis/qna/question/api';
+import { useMutation } from 'react-query';
+
 
 export default function QnaWrite() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  // const router = useRouter(); 
+
+  const postMutation = useMutation(postQuestion, {
+    onSuccess: () => {
+        alert('질문 작성을 성공했습니다.');
+        window.location.reload();
+        window.history.go(-1);
+    },
+  });
 
   const handleSubmit = async () => {
     try {
-      await postQuestion({title, content});
-      // router.push('/qna');
+      postMutation.mutate({ title, content });
     } catch (error) {
       alert('질문 작성을 실패했습니다.');
       console.error(error);
     }
   };
+  
 
   return (
     <AppLayout>
@@ -74,6 +82,7 @@ const Col = styled.div`
   flex-direction: column;
   gap: 2rem;
 `;
+
 const Row = styled.div`
   display: flex;
   flex-direction: row;

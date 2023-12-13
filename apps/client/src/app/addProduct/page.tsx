@@ -11,8 +11,6 @@ import ProductFilterTabs from "../../components/addProduct/ProductFilterTabs/Pro
 import { PlusIcon } from "ui/icon"
 import { addProduct } from "apis/addProduct/api";
 import { useMutation } from 'react-query';
-import { ProductCategory } from 'types/product/product';
-import { Router } from 'next/router';
 
 
 export default function AddProduct(){
@@ -25,28 +23,33 @@ export default function AddProduct(){
 
     const addMutation = useMutation(addProduct, {
         onSuccess: () => {
+            alert('상품 추가를 성공했습니다.');
             window.location.reload();
+            window.history.go(-1);
         },
     });
 
-    const onSubmit = () => {
-        const formData = new FormData();
-        const fileField = document.querySelector('input[type="file"]') as HTMLInputElement;
-    
-        formData.append('productName', productName);
-        formData.append('productDetail', productDescription);
-        formData.append('isInStock', String(inStock));
-        formData.append('category', selectedCategory);        
-        formData.append('file', fileField.files[0]);
-        formData.append('productPrice', price);
-    
-        console.log('category:', selectedCategory);
-        console.log('price:', price);
-        console.log('inStock:', inStock);
-
-        addMutation.mutate(formData);
+    const handleSubmit = () => {
+        try {
+            const formData = new FormData();
+            const fileField = document.querySelector('input[type="file"]') as HTMLInputElement;
         
-        window.history.go(-1);
+            formData.append('productName', productName);
+            formData.append('productDetail', productDescription);
+            formData.append('isInStock', String(inStock));
+            formData.append('category', selectedCategory);        
+            formData.append('file', fileField.files[0]);
+            formData.append('productPrice', price);
+        
+            console.log('category:', selectedCategory);
+            console.log('price:', price);
+            console.log('inStock:', inStock);
+
+            addMutation.mutate(formData);
+        } catch (error) {
+            alert('상품 추가가 실패했습니다.');
+            console.log(error);
+        }
     };
     
     const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
@@ -111,7 +114,7 @@ export default function AddProduct(){
 
                         <ButtonBox>
                             <CancelButton>취소</CancelButton>
-                            <AddButton onClick={onSubmit}>등록</AddButton>
+                            <AddButton onClick={handleSubmit}>등록</AddButton>
                         </ButtonBox>
                     </AddInfoBox>
                 </AddProductBox>
