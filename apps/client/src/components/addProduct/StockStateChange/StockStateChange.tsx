@@ -5,19 +5,19 @@ import { font, color } from "ui/styles";
 import styled from "styled-components"
 import { Text } from 'ui/components';
 
-function StockStateChange() {
-    const [isStocked, setIsStocked] = useState(true);
 
+function StockStateChange({ setIsStocked }) {
     return (
-        <ButtonBox>
-            <Text $fontType='SubTitle2' color={'black'}>재고 유무</Text>
-            <StyledDiv>
-                <YesButton onClick={() => setIsStocked(!isStocked)}>Yes</YesButton>
-                <NoButton onClick={() => setIsStocked(!isStocked)}>No</NoButton>
-            </StyledDiv>
-        </ButtonBox>
-    )
-}
+      <ButtonBox>
+        <Text $fontType='SubTitle2' color={'black'}>재고 유무</Text>
+        <StyledDiv>
+          <YesButton onClick={() => setIsStocked(true)}>Yes</YesButton>
+          <NoButton onClick={() => setIsStocked(false)}>No</NoButton>
+        </StyledDiv>
+      </ButtonBox>
+    );
+  }
+  
 
 export default StockStateChange;
 

@@ -11,7 +11,7 @@ import { ProductCategory } from 'types/product/product';
 import { useMemo } from 'react';
 
 interface ProductListProps {
-    items: '상품' | number;
+    items: '상품' | '등록' | number;
     onSelectCategory: (category: string) => void;
   }
 
@@ -24,8 +24,14 @@ const CategoryMap = {
     'Etc': ProductCategory.Etc,
   };
 
-  const getFilterItems = (items: '상품' | number): string[] => {
-    return items === '상품' ? Object.keys(CategoryMap) : Array.from({ length: items as number }, (_, i) => `#${i + 1}`);
+  const getFilterItems = (items: '상품' | '등록' | number): string[] => {
+    if (items === '상품') {
+      return Object.keys(CategoryMap);
+    } else if (items === '등록') {
+      return Object.keys(CategoryMap).filter(category => category !== '전체');
+    } else {
+      return Array.from({ length: items as number }, (_, i) => `#${i + 1}`);
+    }
   };
 
 function ProductFilterTabs({ items, onSelectCategory }: ProductListProps): JSX.Element {

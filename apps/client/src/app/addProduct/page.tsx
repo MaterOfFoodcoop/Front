@@ -11,33 +11,44 @@ import ProductFilterTabs from "../../components/addProduct/ProductFilterTabs/Pro
 import { PlusIcon } from "ui/icon"
 import { addProduct } from "apis/addProduct/api";
 import { useMutation } from 'react-query';
-import { Product, ProductCategory } from 'types/product/product';
+import { ProductCategory } from 'types/product/product';
+import { Router } from 'next/router';
+
 
 export default function AddProduct(){
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [productName, setProductName] = useState("");
     const [productDescription, setProductDescription] = useState("");
-    const [category, setCategory] = useState("");
-    const [price, setPrice] = useState(0);
     const [inStock, setInStock] = useState(false);
-
     const [selectedCategory, setSelectedCategory] = useState('전체');
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [price, setPrice] = useState("");
 
-
-    const addMutation = useMutation(addProduct);
+    const addMutation = useMutation(addProduct, {
+        onSuccess: () => {
+            window.location.reload();
+        },
+    });
 
     const onSubmit = () => {
-        const postProduct = {
-          productName: productName,
-          category: ProductCategory[category],
-          productDetail: productDescription,
-          productPrice: price,
-          isInStock: inStock
-        };
-        addMutation.mutate(postProduct);
-      };
-      
+        const formData = new FormData();
+        const fileField = document.querySelector('input[type="file"]') as HTMLInputElement;
+    
+        formData.append('productName', productName);
+        formData.append('productDetail', productDescription);
+        formData.append('isInStock', String(inStock));
+        formData.append('category', selectedCategory);        
+        formData.append('file', fileField.files[0]);
+        formData.append('productPrice', price);
+    
+        console.log('category:', selectedCategory);
+        console.log('price:', price);
+        console.log('inStock:', inStock);
 
+        addMutation.mutate(formData);
+        
+        window.history.go(-1);
+    };
+    
     const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
@@ -64,6 +75,7 @@ export default function AddProduct(){
                         onChange={handleImageUpload}
                     />
                 </ImageUploadBox>
+
                     <AddInfoBox>
                         <Input
                             label="상품 이름"
@@ -72,6 +84,7 @@ export default function AddProduct(){
                             value={productName}
                             onChange={(e) => setProductName(e.target.value)}
                         />
+
                         <TextArea
                             label="상품 설명"
                             placeholder="Ex. 추억의 차카니입니다."
@@ -79,15 +92,26 @@ export default function AddProduct(){
                             value={productDescription}
                             onChange={(e) => setProductDescription(e.target.value)}
                         />
+
                         <Text $fontType="SubTitle2">상품 종류</Text>
-                        <ProductFilterTabs items={"상품"} onSelectCategory={setSelectedCategory} />
+                        <ProductFilterTabs items={"등록"} onSelectCategory={setSelectedCategory} />
+
                         <StyledDiv>
-                            <Input label="가격" placeholder="Ex. 1,700" width={"22rem"} />
-                            <StockStateChange />
+                            <Input 
+                                label="가격" 
+                                placeholder="Ex. 1700" 
+                                width={"22rem"}
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                            />
+
+                        {/* 재고 유무 선택 부분 */}
+                        <StockStateChange setIsStocked={setInStock} />
                         </StyledDiv>
+
                         <ButtonBox>
                             <CancelButton>취소</CancelButton>
-                            <AddButton>등록</AddButton>
+                            <AddButton onClick={onSubmit}>등록</AddButton>
                         </ButtonBox>
                     </AddInfoBox>
                 </AddProductBox>
