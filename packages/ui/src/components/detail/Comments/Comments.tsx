@@ -3,7 +3,7 @@
 import { LikeIcon } from "ui/icon";
 import { DETAIL_COMMENT_DATA } from "ui/../../mocks/detail/comments";
 import { Comment } from "ui/../../types/comment/comment";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import Text from "ui/components/Text";
 import { color, font } from "ui/styles";
@@ -35,8 +35,6 @@ function Comments({ id }: CommentsProps): JSX.Element {
   };
 
   const handleCommentSubmit = () => {
-    console.log(comment);
-    console.log("dmdkdkdk");
     commentMutation.mutate();
     setComment("");
   };

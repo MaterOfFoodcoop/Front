@@ -1,15 +1,17 @@
 import { instance } from "../instance/instance";
 
-export interface CommentData {}
+export interface CommentData {
+  content: string;
+  productId: number;
+}
+
 export const createComment = async (commentData: CommentData) => {
   const { data } = await instance.post(`/comment`, commentData);
-  console.log(data);
   return data;
 };
 
 export const getComments = async (productId: number) => {
   const { data } = await instance.get(`/comment/${productId}`);
-  console.log(data);
   return data;
 };
 
