@@ -17,7 +17,7 @@ export default function QnaWrite() {
 
   const postMutation = useMutation(postQuestion, {
     onSuccess: () => {
-        alert('질문 작성을 성공했습니다.');
+        alert('질문을 등록했습니다.');
         window.location.reload();
         window.history.go(-1);
     },
@@ -27,7 +27,7 @@ export default function QnaWrite() {
     try {
       postMutation.mutate({ title, content });
     } catch (error) {
-      alert('질문 작성을 실패했습니다.');
+      alert('질문을 등록하지 못 했습니다.');
       console.error(error);
     }
   };

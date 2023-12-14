@@ -11,7 +11,7 @@ function AnsweringBox ({id}): JSX.Element{
 
     const postMutation = useMutation(postAnswer, {
         onSuccess: () => {
-            alert('답변 작성을 성공했습니다.');
+            alert('답변을 등록했습니다.');
             window.location.reload();
         }
     });
@@ -24,7 +24,7 @@ function AnsweringBox ({id}): JSX.Element{
             postMutation.mutate({content, questionId});
             setAnswer("");
         } catch (error) {
-            alert('답변 작성을 실패했습니다.');
+            alert('답변을 등록하지 못 했습니다.');
             console.error(error);
         }
     };

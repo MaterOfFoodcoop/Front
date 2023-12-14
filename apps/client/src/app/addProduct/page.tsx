@@ -17,13 +17,13 @@ export default function AddProduct(){
     const [productName, setProductName] = useState("");
     const [productDescription, setProductDescription] = useState("");
     const [inStock, setInStock] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState('전체');
+    const [selectedCategory, setSelectedCategory] = useState('Chip');
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [price, setPrice] = useState("");
 
     const addMutation = useMutation(addProduct, {
         onSuccess: () => {
-            alert('상품 추가를 성공했습니다.');
+            alert('상품을 추가했습니다.');
             window.location.reload();
             window.history.go(-1);
         },
@@ -47,7 +47,7 @@ export default function AddProduct(){
 
             addMutation.mutate(formData);
         } catch (error) {
-            alert('상품 추가가 실패했습니다.');
+            alert('상품을 추가하지 못 했습니다.');
             console.log(error);
         }
     };

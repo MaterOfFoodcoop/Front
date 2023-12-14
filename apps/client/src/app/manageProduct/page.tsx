@@ -46,6 +46,7 @@ function ManageProduct(): JSX.Element {
                     subject="상품 관리" 
                     description="와라! 매점에 있는 상품을 관리할 수 있어요."
                 />
+                {/* <SearchBox placeholder="관리할 상품을 검색해 보세요." buttonText="검색"/> */}
                 <SearchBox placeholder="관리할 상품을 검색해 보세요." buttonText="검색"/>
                 <ButtonBox>
                 <Link href="/addProduct">

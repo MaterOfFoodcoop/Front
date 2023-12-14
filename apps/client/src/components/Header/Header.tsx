@@ -49,7 +49,7 @@ function Header({}: HeaderProps): JSX.Element {
         )}
 
         {isLoggedIn ? (
-          <AdminText>로그아웃</AdminText>
+          <AdminText>Admin</AdminText>
         ) : (
           <LoginIcon onClick={openModal}>
             <PersonIcon />

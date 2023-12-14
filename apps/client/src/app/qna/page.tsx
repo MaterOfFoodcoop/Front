@@ -17,11 +17,7 @@ export default function Qna(){
             <Container>
                 <SummaryContent subject="Q&A" description="매점을 이용하면서 궁금했던/바라는 점을 물어볼 수 있어요."/>
                 <Link href='/qna/write'>
-                    {isLoggedIn ? (
-                        <SearchBox placeholder="Q&A를 검색해 보세요." buttonText="검색" />
-                    ) : (
-                        <QnASearchBox/>
-                    )}
+                    <SearchBox placeholder="Q&A를 검색해 보세요." buttonText="질문 작성하기" />
                 </Link>
                 <Questions />
             </Container>
