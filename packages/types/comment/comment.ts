@@ -1,4 +1,4 @@
-export interface Comment{
-    createdDate: string;
-    comment: string;
+export interface Comment {
+  createdAt: string;
+  content: string;
 }

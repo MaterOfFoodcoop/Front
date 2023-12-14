@@ -6,15 +6,18 @@ import { Pagination } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { Product } from "../../../../types/product/product";
 import ProductBox from "./ProductBox/ProductBox";
-import { useEffect, useMemo } from 'react';
-import Text from 'ui/components/Text/index';
+import { useEffect, useMemo } from "react";
+import Text from "ui/components/Text/index";
 
 interface ContentProps {
   productsData?: Product[];
-  selectedCategory: string;  
+  selectedCategory: string;
 }
 
-function Products({ productsData, selectedCategory }: ContentProps): JSX.Element {
+function Products({
+  productsData,
+  selectedCategory,
+}: ContentProps): JSX.Element {
   const gottenData = productsData || [];
   const ITEMS_PER_PAGE = 8;
 
@@ -22,14 +25,15 @@ function Products({ productsData, selectedCategory }: ContentProps): JSX.Element
   const [data, setData] = useState([]);
 
   const filteredData = useMemo(() => {
-    if (selectedCategory === '전체') {
+    if (selectedCategory === "전체") {
       return gottenData;
     }
-    return gottenData.filter(product => product.category === selectedCategory);
+    return gottenData.filter(
+      (product) => product.category === selectedCategory
+    );
   }, [gottenData, selectedCategory]);
 
   const LAST_PAGE = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
-
 
   useEffect(() => {
     const start = ITEMS_PER_PAGE * (page - 1);
@@ -40,7 +44,6 @@ function Products({ productsData, selectedCategory }: ContentProps): JSX.Element
   const handlePage = (event: ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
-
 
   return (
     <Container>
@@ -75,10 +78,10 @@ function Products({ productsData, selectedCategory }: ContentProps): JSX.Element
             )
           )
         ) : (
-          <Text $fontType='SubTitle2'>해당 카테고리에 상품이 없어요.</Text>
+          <Text $fontType="SubTitle2">해당 카테고리에 상품이 없어요.</Text>
         )}
       </ProductContainer>
-  
+
       {data.length > 0 && (
         <PaginationContainer>
           <Pagination
@@ -91,7 +94,7 @@ function Products({ productsData, selectedCategory }: ContentProps): JSX.Element
         </PaginationContainer>
       )}
     </Container>
-  );  
+  );
 }
 
 export default Products;
