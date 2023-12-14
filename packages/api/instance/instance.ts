@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: `https://port-0-back-enji12clpxn1okl.sel4.cloudtype.app`,
+  baseURL: `https://port-0-back-57lz2alps6g0hn.sel4.cloudtype.app`,
   timeout: 10000,
 });
 

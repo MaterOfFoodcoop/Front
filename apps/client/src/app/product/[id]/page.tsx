@@ -1,25 +1,24 @@
-'use client'
+"use client";
 
 import Comments from "ui/src/components/detail/Comments/Comments";
 import ProductBox from "ui/src/components/detail/ProductBox/Product";
-import AppLayout from "client/layouts/AppLayout"
-import { usePathname } from "next/navigation"
-import styled from "styled-components"
+import AppLayout from "client/layouts/AppLayout";
+import { usePathname } from "next/navigation";
+import styled from "styled-components";
 
 export default function ProductDetail() {
   const pathname = usePathname();
-  const id = Number(pathname.split('/').pop());
+  const id = Number(pathname.split("/").pop());
 
   return (
     <AppLayout>
       <Container>
-        <ProductBox id={id}/>
-        <Comments id={id}/>
+        <ProductBox id={id} />
+        <Comments id={id} />
       </Container>
     </AppLayout>
-  )
+  );
 }
-
 
 const Container = styled.div`
   width: calc(100% - 12.5rem);
@@ -30,4 +29,4 @@ const Container = styled.div`
   gap: 1.5rem;
   word-break: keep-all;
   margin: 0 auto;
-`
+`;
