@@ -1,7 +1,6 @@
 "use client";
 
 import { LikeIcon } from "ui/icon";
-import { DETAIL_COMMENT_DATA } from "ui/../../mocks/detail/comments";
 import { Comment } from "ui/../../types/comment/comment";
 import { useContext, useState } from "react";
 import styled from "styled-components";
