@@ -11,6 +11,7 @@ import CommentComponent from "./Comment/CommentComponent";
 import Button from "ui/components/Button/WriteButton";
 import { useQuery } from "react-query";
 import { getComments } from "apis/comment/api";
+import { useCommentMutation } from "apis/comment/mutation";
 import { instance } from "apis/instance/instance";
 
 interface CommentsProps {
@@ -23,6 +24,23 @@ function Comments({ id }: CommentsProps): JSX.Element {
     queryFn: () => getComments(id),
   });
 
+  const [comment, setComment] = useState("");
+  const commentMutation = useCommentMutation({
+    productId: id,
+    content: comment,
+  });
+
+  const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value);
+  };
+
+  const handleCommentSubmit = () => {
+    console.log(comment);
+    console.log("dmdkdkdk");
+    commentMutation.mutate();
+    setComment("");
+  };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -34,8 +52,8 @@ function Comments({ id }: CommentsProps): JSX.Element {
           comments.map((data, idx) => <CommentComponent key={idx} {...data} />)}
       </CommentsBox>
       <WriteBox>
-        <Input />
-        <WriteButton>작성</WriteButton>
+        <Input value={comment} onChange={handleCommentChange} />
+        <WriteButton onClick={handleCommentSubmit}>작성</WriteButton>
       </WriteBox>
     </Container>
   );
