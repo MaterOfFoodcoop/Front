@@ -7,7 +7,7 @@ import { color } from "ui/styles";
 import { useContext } from "react";
 import { UserContext } from "client/context/UserContext";
 import { useDeleteCommentMutation } from "apis/comment/mutation";
-
+import { useQueryClient } from "react-query";
 interface CommentProps {
   content: string;
   createdAt: string;
@@ -19,6 +19,7 @@ export default function CommentComponent({
   createdAt,
   commentId,
 }: CommentProps): JSX.Element {
+  const queryClient = useQueryClient();
   const { isLoggedIn } = useContext(UserContext);
 
   const deleteCommentMutation = useDeleteCommentMutation(commentId);
