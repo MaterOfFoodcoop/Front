@@ -1,18 +1,17 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { color } from "ui/styles";
 import AdminLoginModal from "./AdminLoginModal/AdminLoginModal";
 import { PersonIcon } from "ui/icon";
-import { UserContext } from "client/context/UserContext";
 
 interface HeaderProps {}
 
 function Header({}: HeaderProps): JSX.Element {
   const pathname = usePathname();
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn } = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);

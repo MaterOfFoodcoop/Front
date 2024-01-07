@@ -1,29 +1,34 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState } from "react";
 import FilterTab from "./FilterTab/FilterTab";
-import styled from 'styled-components';
-import { ProductCategory } from '../../../../types/product/product';
+import styled from "styled-components";
+import { ProductCategory } from "../../../../types/product/product";
 
 interface ProductListProps {
-  items: '상품' | number;
+  items: "상품" | number;
   onSelectCategory: (category: string) => void;
 }
 
 // const defaultItems = ['전체', 'Chip', 'Beverage', 'IceCream', 'ProcessedFood', 'Etc'];
 
 const CategoryMap = {
-  '전체': '전체',
-  'Chip': ProductCategory.Chip,
-  'Beverage': ProductCategory.Beverage,
-  'IceCream': ProductCategory.IceCream,
-  'ProcessedFood': ProductCategory.ProcessedFood,
-  'Etc': ProductCategory.Etc,
+  전체: "전체",
+  Chip: ProductCategory.Chip,
+  Beverage: ProductCategory.Beverage,
+  IceCream: ProductCategory.IceCream,
+  ProcessedFood: ProductCategory.ProcessedFood,
+  Etc: ProductCategory.Etc,
 };
 
-const getFilterItems = (items: '상품' | number): string[] => {
-  return items === '상품' ? Object.keys(CategoryMap) : Array.from({ length: items as number }, (_, i) => `#${i + 1}`);
+const getFilterItems = (items: "상품" | number): string[] => {
+  return items === "상품"
+    ? Object.keys(CategoryMap)
+    : Array.from({ length: items as number }, (_, i) => `#${i + 1}`);
 };
 
-function FilterTabs({ items, onSelectCategory }: ProductListProps): JSX.Element {
+function FilterTabs({
+  items,
+  onSelectCategory,
+}: ProductListProps): JSX.Element {
   const productItems = useMemo(() => getFilterItems(items), [items]);
   const [activeTab, setActiveTab] = useState(productItems[0]);
 
@@ -42,8 +47,7 @@ function FilterTabs({ items, onSelectCategory }: ProductListProps): JSX.Element 
       ))}
     </Container>
   );
-};
-
+}
 
 export default FilterTabs;
 
@@ -52,4 +56,4 @@ const Container = styled.div`
   flex-wrap: wrap;
   width: 100%;
   gap: 1rem 1rem;
-`
+`;

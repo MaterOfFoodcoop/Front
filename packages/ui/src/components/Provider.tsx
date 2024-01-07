@@ -1,5 +1,4 @@
 "use client";
-import { UserProvider } from "client/context/UserContext";
 import { GlobalStyle } from "ui/styles/index";
 import { useState, type ReactNode, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -28,12 +27,10 @@ const Provider = ({ children }: ProviderProps) => {
 
   return (
     <>
-      <UserProvider value={{ isLoggedIn, setIsLoggedIn }}>
-        <QueryClientProvider client={queryClient}>
-          <GlobalStyle />
-          {children}
-        </QueryClientProvider>
-      </UserProvider>
+      <QueryClientProvider client={queryClient}>
+        <GlobalStyle />
+        {children}
+      </QueryClientProvider>
     </>
   );
 };

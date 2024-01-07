@@ -2,7 +2,7 @@
 
 import { LikeIcon } from "ui/icon";
 import { Comment } from "ui/../../types/comment/comment";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import Text from "ui/components/Text";
 import { color, font } from "ui/styles";

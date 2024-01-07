@@ -1,18 +1,17 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { color } from "ui/styles";
 import AdminLoginModal from "./AdminLoginModal/AdminLoginModal";
 import { PersonIcon } from "ui/icon";
-import { UserContext } from "client/context/UserContext";
 
 interface HeaderProps {}
 
 function Header({}: HeaderProps): JSX.Element {
   const pathname = usePathname();
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -22,11 +21,11 @@ function Header({}: HeaderProps): JSX.Element {
     console.log(isLoggedIn);
   }, [isLoggedIn]);
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
   }
 
@@ -91,12 +90,12 @@ const Nav = styled.nav`
 const Link = styled.a<{ $active: boolean }>`
   font-weight: 800;
   font-size: 1rem;
-  color: ${props => props.$active ? 'black' : color.gray200};
+  color: ${(props) => (props.$active ? "black" : color.gray200)};
   font-family: "nanumSquareNeo";
   font-weight: 800;
   font-size: 20px;
   &:hover {
-    color: 'black';
+    color: "black";
     transition: 0.3s ease;
   }
 `;
