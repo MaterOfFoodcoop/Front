@@ -6,7 +6,7 @@ import { Question } from "ui/../../types/question/question";
 import styled from "styled-components";
 import Text from "ui/components/Text";
 import { color } from "ui/styles";
-import { useUser } from "client/context/UserContext";
+import { useState } from "react";
 
 function QuestionItem({
   id,
@@ -16,7 +16,7 @@ function QuestionItem({
   content,
 }: Question): JSX.Element {
   const { value: isOpen, toggle: toggleOpen } = useBooleanState();
-  const { isLoggedIn, setIsLoggedIn } = useUser();
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const dateString = createdDate;
   const date = new Date(dateString);
