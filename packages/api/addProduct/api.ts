@@ -1,12 +1,20 @@
 import { instance } from "../instance/instance";
+import Cookies from "js-cookie";
 
 export const addProduct = async (product: FormData) => {
+  const token = Cookies.get("token");
+
+  if (!token) {
+    throw new Error("No authentication token found");
+  }
+
   const { data } = await instance.post("/products", product, {
     headers: {
-      'Content-Type': 'multipart/form-data',
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJzdWIiOiIwIiwiaWF0IjoxNzAyNDc1Njg0LCJleHAiOjE3MDI4MzU2ODR9.LF_zLUg36jorKfkGrdIFTOgF64naMk9ZBmAJMzCBWFU`
-    }
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
   });
+
   console.log(data);
   return data;
 };

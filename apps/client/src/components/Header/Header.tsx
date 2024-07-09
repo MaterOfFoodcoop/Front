@@ -22,11 +22,11 @@ function Header({}: HeaderProps): JSX.Element {
     console.log(isLoggedIn);
   }, [isLoggedIn]);
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
   }
 
@@ -91,12 +91,12 @@ const Nav = styled.nav`
 const Link = styled.a<{ $active: boolean }>`
   font-weight: 800;
   font-size: 1rem;
-  color: ${props => props.$active ? 'black' : color.gray200};
+  color: ${(props) => (props.$active ? "black" : color.gray200)};
   font-family: "nanumSquareNeo";
   font-weight: 800;
   font-size: 20px;
   &:hover {
-    color: 'black';
+    color: "black";
     transition: 0.3s ease;
   }
 `;

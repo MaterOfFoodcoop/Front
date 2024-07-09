@@ -11,8 +11,10 @@ export const useLoginMutation = (loginUserData: LoginData) => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
   return useMutation(() => login(loginUserData), {
-    onSuccess: () => {
+    onSuccess: (d) => {
       alert("로그인 성공");
+      console.log("ㅎ히히히히", d);
+      // localStorage.setItem();
       setIsLoggedIn(true);
     },
     onError: () => {
